@@ -1,555 +1,371 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Luma - Project</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Luma — Alís González</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#07090f;--ink2:#0f1623;--ink3:#1a2540;
+  --gold:#a78bfa;--gold2:#c4b5fd;--ice:#4fc3f7;
+  --text:#d4cfc8;--muted:#717a94;
+  --subtle:rgba(167,139,250,.12);--bord:rgba(167,139,250,.18);--bord2:rgba(255,255,255,.07);
+  --rad:6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+::selection{background:rgba(167,139,250,.25)}
 
-    <script src="https://cdn.tailwindcss.com"></script>
+/* NAV */
+nav{position:fixed;top:0;width:100%;background:rgba(7,9,15,.88);border-bottom:1px solid var(--bord2);backdrop-filter:blur(16px);z-index:200}
+.nav-inner{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:13px 28px}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 18px;border:1px solid var(--bord2);color:var(--muted);border-radius:var(--rad);transition:color .2s,border-color .2s}
+.nav-back:hover{color:var(--gold);border-color:var(--bord)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-hire{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 18px;border:1px solid var(--bord);color:var(--gold);border-radius:var(--rad);transition:background .2s}
+.nav-hire:hover{background:var(--subtle)}
+@media(max-width:760px){.nav-links{display:none}}
 
-    <style>
-        body {
-            background: #070b10;
-            color: white;
-            font-family: sans-serif;
-        }
+/* HERO */
+.hero{position:relative;height:65vh;min-height:420px;background-size:cover;background-position:center;overflow:hidden}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(to top,var(--ink) 10%,rgba(7,9,15,.45) 60%,rgba(7,9,15,.3) 100%)}
+.hero-content{position:absolute;bottom:0;left:0;right:0;max-width:1160px;margin:auto;padding:0 28px 40px}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.hero-tag::before{content:'';width:20px;height:1px;background:var(--gold);opacity:.5}
+.hero-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.8rem,6vw,5rem);line-height:.95;letter-spacing:-.03em;color:#fff;margin-bottom:12px}
 
-        html {
-            scroll-behavior: smooth;
-        }
+.hero-sub{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--muted);margin-bottom:20px;letter-spacing:.06em}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.htag{font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:4px 12px;border-radius:20px;letter-spacing:.06em}
+.htag-skill{background:var(--subtle);border:1px solid var(--bord);color:var(--gold)}
+.htag-tool{background:rgba(255,255,255,.04);border:1px solid var(--bord2);color:var(--muted)}
 
-        .btn {
-            padding: 6px 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: 0.25s;
-            display: inline-block;
-        }
+/* LAYOUT */
+.content-wrap{max-width:1160px;margin:auto;padding:60px 28px 96px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start}
+@media(max-width:900px){.content-wrap{grid-template-columns:1fr}}
+.main-col{display:flex;flex-direction:column;gap:56px}
 
-            .btn:hover {
-                border-color: #22d3ee;
-                color: #22d3ee;
-            }
+/* SECTION TITLES */
+.sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.5rem;color:#fff;letter-spacing:-.02em;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--bord2)}
 
-        .btn-primary {
-            background: #22d3ee;
-            color: #070b10;
-            font-weight: 600;
-        }
+/* CAROUSEL */
+.carousel{position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--bord2)}
+.slide{position:absolute;inset:0;opacity:0;transition:.5s ease;background-size:cover;background-position:center}
+.slide.active{opacity:1}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(7,9,15,.7);border:1px solid var(--bord2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:1.1rem;transition:border-color .2s,color .2s}
+.arrow:hover{border-color:var(--bord);color:var(--gold)}
+.arrow-left{left:12px}
+.arrow-right{right:12px}
+.dots{position:absolute;bottom:10px;width:100%;display:flex;justify-content:center;gap:6px}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:background .2s}
+.dot.active{background:var(--gold)}
 
-            .btn-primary:hover {
-                background: #67e8f9;
-            }
+/* OVERVIEW */
+.overview-text{font-size:.9rem;color:var(--muted);line-height:1.85}
 
-        .hero {
-            position: relative;
-            height: 60vh;
-            background-size: cover;
-            background-position: center;
-        }
+/* DROPDOWNS */
+.dropdown{border:1px solid var(--bord2);border-radius:10px;overflow:hidden;transition:border-color .2s}
+.dropdown:hover{border-color:var(--bord)}
+.dropdown summary{cursor:pointer;padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);list-style:none;display:flex;align-items:center;gap:10px;user-select:none}
+.dropdown summary::before{content:'▸';font-size:.7rem;transition:transform .2s;display:inline-block}
+.dropdown[open] summary::before{transform:rotate(90deg)}
+.dropdown summary::-webkit-details-marker{display:none}
+.dd-body{padding:0 20px 20px}
+.dd-desc{font-size:.83rem;color:var(--muted);line-height:1.8;margin-bottom:16px;padding:12px 14px;background:rgba(255,255,255,.03);border-radius:var(--rad);border-left:2px solid var(--bord)}
+.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:560px){.img-grid{grid-template-columns:1fr 1fr}}
+.img-item{position:relative;aspect-ratio:1;border-radius:var(--rad);overflow:hidden;cursor:pointer;border:1px solid var(--bord2);transition:border-color .2s}
+.img-item:hover{border-color:var(--bord)}
+.img-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.img-item:hover img{transform:scale(1.04)}
+.img-label{position:absolute;top:8px;left:8px;font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:rgba(7,9,15,.75);color:var(--text);border:1px solid var(--bord2)}
 
-            .hero::after {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(to top, #070b10 15%, transparent 70%);
-            }
+/* LIGHTBOX */
+#lightbox{position:fixed;inset:0;background:rgba(5,8,18,.95);display:none;align-items:center;justify-content:center;z-index:500;backdrop-filter:blur(8px)}
+#lightbox.open{display:flex}
+#lightboxImg{max-width:85%;max-height:85vh;border-radius:8px;border:1px solid var(--bord)}
+.lb-btn{position:absolute;width:40px;height:40px;border-radius:50%;background:var(--ink2);border:1px solid var(--bord2);color:var(--muted);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s,border-color .2s}
+.lb-btn:hover{color:var(--gold);border-color:var(--bord)}
+#lbPrev{left:20px;top:50%;transform:translateY(-50%)}
+#lbNext{right:20px;top:50%;transform:translateY(-50%)}
+#lbClose{top:20px;right:20px}
 
-        .hero-content {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            z-index: 2;
-        }
+/* LEARNED */
+.learned-text{font-size:.9rem;color:var(--muted);line-height:1.85;margin-bottom:24px}
+.tag-group{margin-bottom:16px}
+.tag-group-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.tags-row{display:flex;flex-wrap:wrap;gap:7px}
+.tag-sk{font-family:'JetBrains Mono',monospace;font-size:.63rem;padding:4px 12px;border-radius:20px;background:var(--subtle);border:1px solid var(--bord);color:var(--gold);letter-spacing:.05em}
+.tag-tl{font-family:'JetBrains Mono',monospace;font-size:.63rem;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--bord2);color:var(--muted);letter-spacing:.05em}
 
-        .tag {
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 12px;
-        }
+/* BUTTONS */
+.btn-gold{padding:11px 28px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border-radius:var(--rad);border:none;cursor:pointer;box-shadow:0 0 24px rgba(167,139,250,.2);transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 4px 32px rgba(167,139,250,.35)}
+.btn-outline{padding:11px 28px;background:transparent;border:1px solid var(--bord2);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-radius:var(--rad);transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap}
 
-        /* NUEVO */
-        .tag-skill {
-            border: 1px solid rgba(34,211,238,0.4);
-            background: rgba(34,211,238,0.1);
-            color: #22d3ee;
-        }
+/* SIDEBAR */
+.sidebar-card{background:var(--ink2);border:1px solid var(--bord2);border-radius:10px;padding:24px}
+aside{position:sticky;top:80px;align-self:start}
+.sidebar-heading{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.info-row{display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:1px solid var(--bord2)}
+.info-row:last-of-type{border-bottom:none}
+.info-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.info-val{font-size:.88rem;color:var(--text)}
+.social-section{margin-top:20px;padding-top:20px;border-top:1px solid var(--bord2)}
+.social-link{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:var(--rad);border:1px solid var(--bord2);margin-bottom:8px;transition:border-color .2s,background .2s;color:var(--text)}
+.social-link:hover{border-color:var(--bord);background:var(--ink3);color:var(--gold)}
+.social-link span{font-size:.84rem}
+.social-link .arrow{font-size:.8rem;color:var(--muted);transition:transform .2s,color .2s;position:static;transform:none;width:auto;height:auto;background:none;border:none}
+.social-link:hover .arrow{transform:translateX(3px);color:var(--gold)}
 
-        .tag-tool {
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.05);
-            color: rgba(255,255,255,0.8);
-        }
-
-        .carousel {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: 0.5s ease;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            transform: none;
-        }
-
-            .slide.active {
-                opacity: 1;
-            }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-        }
-
-        .left {
-            left: 10px;
-        }
-
-        .right {
-            right: 10px;
-        }
-
-        .dots {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-        }
-
-            .dot.active {
-                background: #22d3ee;
-            }
-
-        .card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 16px;
-            position: sticky;
-            top: 100px;
-        }
-    </style>
+/* FOOTER */
+footer{text-align:center;padding:36px 24px 40px;border-top:1px solid var(--bord2)}
+footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
+</style>
 </head>
-
 <body>
 
-    <!-- NAV -->
-    <nav class="fixed top-0 w-full bg-[#070b10]/80 border-b border-white/10 z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-3 text-sm">
-             <a href="#" onclick="window.history.back(); return false;" class="btn">← Back</a>
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <a href="javascript:history.back()" class="nav-back">← Back</a>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#whatidid">My Work</a></li>
+      <li><a href="#learned">My Skills</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-hire">Hire Me</a>
+  </div>
+</nav>
 
-            <div class="hidden md:flex gap-6 text-white/60">
-                <a href="#overview">Overview</a>
-                <a href="#whatidid">What I Did</a>
-                <a href="#learned">What I Learned</a>
+<!-- HERO -->
+<section class="hero" style="background-image:url('https://i.ibb.co/gx7mzZ5/image-5.png')">
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Featured Project · Solo</div>
+    <h1 class="hero-title">Luma</h1>
+    <p class="hero-sub">Semi-Open World Adventure · Unreal Engine 5</p>
+    <div class="hero-tags">
+      <span class="htag htag-tool">Unreal Engine 5</span>
+      <span class="htag htag-skill">Game Design</span>
+      <span class="htag htag-skill">Systems Design</span>
+      <span class="htag htag-skill">Level Design</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="content-wrap">
+  <div class="main-col">
+
+    <!-- CAROUSEL -->
+    <div>
+      <div class="sec-title">Screenshots</div>
+      <div class="carousel">
+        <div class="slide active" style="background-image:url('https://i.ibb.co/Q3827bX7/image.png')"></div>
+        <div class="slide" style="background-image:url('https://i.ibb.co/Nd0XrSJ0/image.png')"></div>
+        <div class="slide" style="background-image:url('https://i.ibb.co/NhCP9Yr/image.png')"></div>
+        <div class="slide" style="background-image:url('https://i.ibb.co/N2ZmYKpK/image.png')"></div>
+        <div class="slide" style="background-image:url('https://i.ibb.co/DFRg8md/image.png')"></div>
+        <div class="slide" style="background-image:url('https://i.ibb.co/chZ6YqjD/image.png')"></div>
+        <button class="arrow arrow-left" onclick="prev()">‹</button>
+        <button class="arrow arrow-right" onclick="next()">›</button>
+        <div class="dots" id="dots"></div>
+      </div>
+    </div>
+
+    <!-- OVERVIEW -->
+    <div id="overview">
+      <div class="sec-title">Overview</div>
+      <p class="overview-text">Luma is a third-person 3D narrative game about a small moth traveling toward the moon to restore its fading light. As the moon dims, darkness spreads across a semi-open world, corrupting the environment and harming its inhabitants. The player explores these affected regions, uncovering the cause of the fading light while working to bring illumination back to the world.</p>
+    </div>
+
+    <!-- WHAT I DID -->
+    <div id="whatidid">
+      <div class="sec-title">What I Did</div>
+      <p style="font-size:.9rem;color:var(--muted);line-height:1.85;margin-bottom:20px">I worked on game design, including combat, enemy AI, bosses, abilities, and progression. Designed the core gameplay loop and a semi-open world of interconnected islands. Created UX/UI wireframes and screen flows, and produced the LDD and GDD documentation.</p>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+
+        <details class="dropdown">
+          <summary>Level Design</summary>
+          <div class="dd-body">
+            <p class="dd-desc">Worked on level design layouts, defining environmental composition, object placement, and set dressing to support gameplay flow and navigation. All images are from Level 2.</p>
+            <div class="img-grid">
+              <div class="img-item" onclick="openGallery(0,0)">
+                <img src="https://i.ibb.co/2789Ttqr/IMG-1687-1.jpg" alt="Level 2 Layout">
+                <div class="img-label">Level 2 — Layout</div>
+              </div>
+              <div class="img-item" onclick="openGallery(0,1)">
+                <img src="https://i.ibb.co/svHJ42Dh/Dise-o-sin-t-tulo-4.png" alt="Level 2 Terrain" style="object-position:35% 50%">
+                <div class="img-label">Level 2 — Terrain</div>
+              </div>
+              <div class="img-item" onclick="openGallery(0,2)">
+                <img src="https://i.ibb.co/dwrjJYMJ/image-64.png" alt="Level 2 In Game">
+                <div class="img-label">Level 2 — In Game</div>
+              </div>
             </div>
+          </div>
+        </details>
 
-            <a href="#contact" class="btn btn-primary">Hire Me</a>
+        <details class="dropdown">
+          <summary>Systems</summary>
+          <div class="dd-body">
+            <p class="dd-desc">Designed and balanced core gameplay systems, including progression, economy, and in-game shop mechanics, ensuring consistent player flow and engaging reward structures.</p>
+            <div class="img-grid">
+              <div class="img-item" onclick="openGallery(1,0)">
+                <img src="https://i.ibb.co/6RxsyGNk/image.png" alt="Combat System">
+                <div class="img-label">GDD — Combat System</div>
+              </div>
+              <div class="img-item" onclick="openGallery(1,1)">
+                <img src="https://i.ibb.co/wZ25YHN8/image-67.png" alt="Collectibles Shop" style="object-position:35% 50%">
+                <div class="img-label">Collectibles & Shop</div>
+              </div>
+              <div class="img-item" onclick="openGallery(1,2)">
+                <img src="https://i.ibb.co/whW8sqnk/image-68.png" alt="In-Game Shop">
+                <div class="img-label">In-Game Shop</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="dropdown">
+          <summary>Texturing</summary>
+          <div class="dd-body">
+            <p class="dd-desc">Textured the entire game in Substance Painter, creating smart materials for characters to keep a consistent visual style.</p>
+            <div class="img-grid">
+              <div class="img-item" onclick="openGallery(2,0)">
+                <img src="https://i.ibb.co/Y7z8BZSK/image-70.png" alt="NPC Texturing">
+                <div class="img-label">Negotiation NPC</div>
+              </div>
+              <div class="img-item" onclick="openGallery(2,1)">
+                <img src="https://i.ibb.co/8n7BP1F0/image-71.png" alt="Main Character" style="object-position:35% 50%">
+                <div class="img-label">Main Character</div>
+              </div>
+              <div class="img-item" onclick="openGallery(2,2)">
+                <img src="https://i.ibb.co/r27XcT0n/image-69.png" alt="Soul Collector">
+                <div class="img-label">Soul Collector</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+      </div>
+    </div>
+
+    <!-- WHAT I LEARNED -->
+    <div id="learned">
+      <div class="sec-title">What I Learned</div>
+      <p class="learned-text">I developed a deeper understanding of balancing interconnected gameplay systems within a semi-open world structure. This included designing and tuning economy systems — shop, currency, and upgrades — ensuring that progression felt rewarding without breaking game balance. I also worked extensively on pacing, learning how to distribute combat, exploration, and narrative beats to maintain player engagement across a non-linear world. Refining game feel was a key part of the process, especially when iterating on combat responsiveness, player movement, and feedback systems.</p>
+      <div class="tag-group">
+        <div class="tag-group-label">Skills</div>
+        <div class="tags-row">
+          <span class="tag-sk">Balancing</span>
+          <span class="tag-sk">Game Feel</span>
+          <span class="tag-sk">Level Design</span>
+          <span class="tag-sk">Set Dressing</span>
+          <span class="tag-sk">UI Design</span>
+          <span class="tag-sk">Gameplay Design</span>
+          <span class="tag-sk">Combat Design</span>
         </div>
-    </nav>
-
-    <!-- HERO -->
-    <section class="hero" style="background-image:url('https://i.ibb.co/gx7mzZ5/image-5.png')">
-        <div class="hero-content">
-            <h1 class="text-4xl font-bold">Luma</h1>
-            <p class="text-cyan-400">Semi-Open World, Adventure | Unreal Engine</p>
-
-            <div class="flex gap-2 mt-2 flex-wrap">
-                <span class="tag tag-tool">Unreal Engine</span>
-                <span class="tag tag-skill">Game Design</span>
-                <span class="tag tag-skill">Systems & Level Design</span>
-            </div>
+      </div>
+      <div class="tag-group">
+        <div class="tag-group-label" style="color:var(--text)">Tools</div>
+        <div class="tags-row">
+          <span class="tag-tl">Blueprints</span>
+          <span class="tag-tl">Unreal Engine 5</span>
+          <span class="tag-tl">Substance Painter</span>
+          <span class="tag-tl">Maya</span>
+          <span class="tag-tl">Blender</span>
+          <span class="tag-tl">Miro</span>
         </div>
-    </section>
-
-    <!-- CONTENT -->
-    <section class="max-w-7xl mx-auto px-6 py-12 grid md:grid-cols-[2fr_1fr] gap-10">
-
-        <div class="space-y-14">
-
-            <!-- CAROUSEL -->
-            <div>
-                <h2 class="text-2xl mb-4">Screenshots</h2>
-                <div class="carousel">
-                    <div class="slide active" style="background-image:url('https://i.ibb.co/Q3827bX7/image.png')"></div>
-                    <div class="slide" style="background-image: url('https://i.ibb.co/Nd0XrSJ0/image.png')"></div>
-                    <div class="slide" style="background-image: url('https://i.ibb.co/NhCP9Yr/image.png')"></div>
-                    <div class="slide" style="background-image:url('https://i.ibb.co/N2ZmYKpK/image.png')"></div>
-                    <div class="slide" style="background-image: url('https://i.ibb.co/DFRg8md/image.png')"></div>
-                    <div class="slide" style="background-image: url('https://i.ibb.co/chZ6YqjD/image.png')"></div>
-
-
-                    <button class="arrow left" onclick="prev()">‹</button>
-                    <button class="arrow right" onclick="next()">›</button>
-                    <div class="dots" id="dots"></div>
-                </div>
-            </div>
-
-            <div id="overview">
-                <h2 class="text-2xl mb-2">Overview</h2>
-                <p class="text-white/60">Luma is a third-person 3D narrative game about a small moth traveling toward the moon to restore its fading light. As the moon dims, darkness spreads across a semi-open world, corrupting the environment and harming its inhabitants. The player explores these affected regions, uncovering the cause of the fading light while working to bring illumination back to the world. </p>
-            </div>
-
-            <div id="whatidid">
-                <h2 class="text-2xl mb-2">What I Did</h2>
-
-                <p class="text-white/60 mb-6">
-                    I worked on game design, including combat, enemy AI, bosses, abilities, and progression. Designed the core gameplay loop and a semi-open world of interconnected islands. Created UX/UI wireframes and screen flows, and produced the LDD and GDD documentation.
-                </p>
-
-                <!-- DROPDOWN -->
-                <div class="space-y-3">
-
-                    <!-- LEVEL -->
-                    <details class="border border-white/10 rounded-lg p-3">
-                        <summary class="cursor-pointer text-cyan-400 font-semibold">
-                            Level Design
-                        </summary>
-
-                        <!-- WALL OF TEXT -->
-                        <div class="mt-3 mb-4 text-sm text-gray-300 leading-relaxed bg-black/20 p-3 rounded">
-                            Worked on level design layouts, defining environmental composition, object placement, and set dressing to support gameplay flow and navigation. All images are from Level 2.
-                        </div>
-
-                        <div class="grid grid-cols-3 gap-2 mt-3">
-
-                            <!-- ITEM 1 -->
-                            <div class="relative aspect-square overflow-hidden">
-                                <img onclick="openGallery(0,0)"
-                                     class="cursor-pointer rounded w-full h-full object-cover"
-                                     src="https://i.ibb.co/2789Ttqr/IMG-1687-1.jpg">
-
-                                <!-- texto encima -->
-                                <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                                    Level 2 - Layout
-                                </div>
-
-                                <!-- pie de imagen -->
-                                <div class="text-xs text-gray-300 mt-1 text-center">
-                                    Vista general del nivel
-                                </div>
-                            </div>
-
-                            <!-- ITEM 2 -->
-                            <div class="relative aspect-square overflow-hidden">
-                                <img onclick="openGallery(0,1)"
-                                     class="cursor-pointer rounded w-full h-full object-cover object-[35%_50%]"
-                                     src="https://i.ibb.co/svHJ42Dh/Dise-o-sin-t-tulo-4.png">
-
-                                <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                                    Level 2 - Terrain
-                                </div>
-                            </div>
-
-                            <!-- ITEM 3 -->
-                            <div class="relative aspect-square overflow-hidden">
-                                <img onclick="openGallery(0,2)"
-                                     class="cursor-pointer rounded w-full h-full object-cover"
-                                     src="https://i.ibb.co/dwrjJYMJ/image-64.png">
-
-                                <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                                    Level 2 - First Look In Game
-                                </div>
-                            </div>
-
-                        </div>
-                    </details>
-
-                    <!-- SYSTEMS -->
-                    <details class="border border-white/10 rounded-lg p-3">
-                        <summary class="cursor-pointer text-cyan-400 font-semibold">
-                            Systems
-                        </summary>
-
-                        <!-- WALL OF TEXT -->
-                        <div class="mt-3 mb-4 text-sm text-gray-300 leading-relaxed bg-black/20 p-3 rounded">
-                            Designed and balanced core gameplay systems, including progression, economy, and in-game shop mechanics, ensuring consistent player flow and engaging reward structures.
-                        </div>
-
-                        <div class="grid grid-cols-3 gap-2 mt-3">
-
-                            <!-- ITEM 1 -->
-                            <div class="relative aspect-square overflow-hidden">
-                                <img onclick="openGallery(1,0)"
-                                     class="cursor-pointer rounded w-full h-full object-cover"
-                                     src="https://i.ibb.co/6RxsyGNk/image.png">
-
-                                <!-- texto encima -->
-                                <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                                    GDD Documentation - Combat System
-                                </div>
-                            </div>
-
-                            <!-- ITEM 2 -->
-                            <div class="relative aspect-square overflow-hidden">
-                                <img onclick="openGallery(1,1)"
-                                     class="cursor-pointer rounded w-full h-full object-cover object-[35%_50%]"
-                                     src="https://i.ibb.co/wZ25YHN8/image-67.png">
-
-                                <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                                    System Design – Collectibles & In-Game Shop
-                                </div>
-                            </div>
-
-                            <!-- ITEM 3 -->
-                            <div class="relative aspect-square overflow-hidden">
-                                <img onclick="openGallery(1,2)"
-                                     class="cursor-pointer rounded w-full h-full object-cover"
-                                     src="https://i.ibb.co/whW8sqnk/image-68.png">
-
-                                <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                                    System Design – In-Game Shop
-                                </div>
-                            </div>
-
-                        </div>
-                    </details>
-
-                    <!-- TEXTURING -->
-                    <details class="border border-white/10 rounded-lg p-3">
-                        <summary class="cursor-pointer text-cyan-400 font-semibold">
-                            Texturing
-                        </summary>
-
-                        <!-- WALL OF TEXT -->
-                        <div class="mt-3 mb-4 text-sm text-gray-300 leading-relaxed bg-black/20 p-3 rounded">
-                            Textured the entire game in Substance Painter, creating smart materials for characters to keep a consistent visual style.
-                        </div>
-
-                        <div class="grid grid-cols-3 gap-2 mt-3">
-
-                            <!-- ITEM 1 -->
-                            <div class="relative aspect-square overflow-hidden">
-                                <img onclick="openGallery(2,0)"
-                                     class="cursor-pointer rounded w-full h-full object-cover"
-                                     src="https://i.ibb.co/Y7z8BZSK/image-70.png">
-
-                                <!-- texto encima -->
-                                <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                                    Negotiation (NPC) - Texturing
-                                </div>
-                            </div>
-
-                            <!-- ITEM 2 -->
-                            <div class="relative aspect-square overflow-hidden">
-                                <img onclick="openGallery(2,1)"
-                                     class="cursor-pointer rounded w-full h-full object-cover object-[35%_50%]"
-                                     src="https://i.ibb.co/8n7BP1F0/image-71.png">
-
-                                <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                                    Main Character - Texturing
-                                </div>
-                            </div>
-
-                            <!-- ITEM 3 -->
-                            <div class="relative aspect-square overflow-hidden">
-                                <img onclick="openGallery(2,2)"
-                                     class="cursor-pointer rounded w-full h-full object-cover"
-                                     src="https://i.ibb.co/r27XcT0n/image-69.png">
-
-                                <div class="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded">
-                                    Soul Collector - Texturing
-                                </div>
-                            </div>
-
-                        </div>
-                    </details>
-
-                </div>
-            </div>
-
-            <!-- LIGHTBOX -->
-            <div id="lightbox" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50">
-                <button onclick="prevImg()" class="absolute left-5 text-3xl">‹</button>
-
-                <img id="lightboxImg" class="max-w-[80%] max-h-[80%] rounded-lg">
-
-                <button onclick="nextImg()" class="absolute right-5 text-3xl">›</button>
-                <button onclick="closeGallery()" class="absolute top-5 right-5 text-xl">✕</button>
-            </div>
-
-            <script>
-                const gallery = [
-                    [
-                        "https://i.ibb.co/2789Ttqr/IMG-1687-1.jpg",
-                        "https://i.ibb.co/svHJ42Dh/Dise-o-sin-t-tulo-4.png",
-                        "https://i.ibb.co/dwrjJYMJ/image-64.png"
-                    ],
-                    [
-                        "https://i.ibb.co/6RxsyGNk/image.png",
-                        "https://i.ibb.co/wZ25YHN8/image-67.png",
-                        "https://i.ibb.co/whW8sqnk/image-68.png"
-                    ],
-                    [
-                        "https://i.ibb.co/Y7z8BZSK/image-70.png",
-                        "https://i.ibb.co/8n7BP1F0/image-71.png",
-                        "https://i.ibb.co/r27XcT0n/image-69.png"
-                    ]
-                ];
-
-                let currentCat = 0;
-                let currentImg = 0;
-
-                function openGallery(cat, img) {
-                    currentCat = cat;
-                    currentImg = img;
-                    document.getElementById("lightbox").classList.remove("hidden");
-                    document.getElementById("lightbox").classList.add("flex");
-                    updateImg();
-                }
-
-                function updateImg() {
-                    document.getElementById("lightboxImg").src = gallery[currentCat][currentImg];
-                }
-
-                function nextImg() {
-                    currentImg = (currentImg + 1) % gallery[currentCat].length;
-                    updateImg();
-                }
-
-                function prevImg() {
-                    currentImg = (currentImg - 1 + gallery[currentCat].length) % gallery[currentCat].length;
-                    updateImg();
-                }
-
-                function closeGallery() {
-                    document.getElementById("lightbox").classList.add("hidden");
-                }
-            </script>
-
-            <div id="learned">
-                <h2 class="text-2xl mb-2">What I Learned</h2>
-                <p class="text-white/60">
-                    I developed a deeper understanding of balancing interconnected gameplay systems within an Semi-open world structure. This included designing and tuning economy systems (shop, currency, and upgrades), ensuring that progression felt rewarding without breaking game balance. I also worked extensively on pacing, learning how to distribute combat, exploration, and narrative beats to maintain player engagement across a non-linear world. Refining game feel was a key part of the process, especially when iterating on combat responsiveness, player movement, and feedback systems. Overall, I gained hands-on experience in system balancing, player progression, and the challenges of maintaining consistency and clarity in a semi-open world design.
-                </p>
-
-                <!-- TAGS -->
-                <div class="mt-4 space-y-3">
-
-                    <div>
-                        <p class="text-sm text-cyan-400 mb-1 font-semibold">SKILLS</p>
-                        <div class="flex gap-2 flex-wrap">
-                            <span class="tag tag-skill">Balancing</span>
-                            <span class="tag tag-skill">Game Feel</span>
-                            <span class="tag tag-skill">Level Design</span>
-                            <span class="tag tag-skill">Set Dressing</span>
-                            <span class="tag tag-skill">UI Design</span>
-                            <span class="tag tag-skill">Gameplay Design</span>
-                            <span class="tag tag-skill">Combat Design</span>
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-white mb-1 font-semibold">TOOLS</p>
-                        <div class="flex gap-2 flex-wrap">
-                            <span class="tag tag-tool">Blueprints</span>
-                            <span class="tag tag-tool">Unreal Engine</span>
-                            <span class="tag tag-tool">Substance Painter</span>
-                            <span class="tag tag-tool">Maya</span>
-                            <span class="tag tag-tool">Blender</span>
-                            <span class="tag tag-tool">Miro</span>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-
-            <!-- BOTONES -->
-            <div class="pt-10 flex gap-4 flex-wrap">
-                <a href="https://drive.google.com/drive/folders/1IJaeY5nMcAneHBTrm4NibeUc0fOEJzQf?usp=sharing"
-                   class="btn btn-primary"
-                   target="_blank">
-                    Extra Documentation
-                </a>
-
-                <a href="https://www.youtube.com/watch?v=enJ1WeOIhYY"
-                   class="btn btn-primary"
-                   target="_blank">
-                    Trailer
-                </a>
-            </div>
-        </div>
-
-        <!-- SIDEBAR -->
-        <aside>
-            <div class="card">
-                <h3 class="text-cyan-400 mb-3 font-semibold">Project Info</h3>
-                <p><b>Engine:</b> Unreal Engine 5 (with Lumen)</p>
-                <p><b>Genre:</b> Semi-Open World</p>
-                <p><b>Role:</b> Game Designer</p>
-                <p><b>Focus:</b> Systems, UI, Combat</p>
-
-                <!-- SOCIAL MEDIA -->
-                <div class="mt-5">
-                    <h4 class="text-cyan-400 mb-2 font-semibold">Social Media</h4>
-
-                    <a href="https://www.instagram.com/sushibytte/" target="_blank" class="block text-blue-400 hover:underline">
-                        Intagram
-
-                    </a>
-                    <a href="https://itch.io/profile/sushibytte" target="_blank" class="block text-blue-400 hover:underline">
-                        Itch.io
-
-                    </a>
-                </div>
-            </div>
-        </aside>
-
-    </section>
-
-    <script>
-        let index = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dotsContainer = document.getElementById('dots');
-
-        function update() {
-            slides.forEach((s, i) => s.classList.toggle('active', i === index));
-            renderDots();
-        }
-
-        function next() { index = (index + 1) % slides.length; update(); }
-        function prev() { index = (index - 1 + slides.length) % slides.length; update(); }
-
-        function renderDots() {
-            dotsContainer.innerHTML = '';
-            slides.forEach((_, i) => {
-                const d = document.createElement('div');
-                d.className = 'dot' + (i === index ? ' active' : '');
-                d.onclick = () => { index = i; update(); }
-                dotsContainer.appendChild(d);
-            });
-        }
-
-        renderDots();
-    </script>
-
+      </div>
+    </div>
+
+    <!-- BUTTONS -->
+    <div class="btn-row">
+      <a href="https://drive.google.com/drive/folders/1IJaeY5nMcAneHBTrm4NibeUc0fOEJzQf?usp=sharing" target="_blank" class="btn-gold">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        Extra Documentation
+      </a>
+      <a href="https://www.youtube.com/watch?v=enJ1WeOIhYY" target="_blank" class="btn-outline">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        Watch Trailer
+      </a>
+    </div>
+
+  </div>
+
+  <!-- SIDEBAR -->
+  <aside>
+    <div class="sidebar-card">
+      <div class="sidebar-heading">Project Info</div>
+      <div class="info-row"><span class="info-label">Engine</span><span class="info-val">Unreal Engine 5 · Lumen</span></div>
+      <div class="info-row"><span class="info-label">Genre</span><span class="info-val">Semi-Open World</span></div>
+      <div class="info-row"><span class="info-label">Role</span><span class="info-val">Game Designer</span></div>
+      <div class="info-row"><span class="info-label">Focus</span><span class="info-val">Systems, UI, Combat, Narratiev, Level Design, Texturing</span></div>
+      <div class="info-row"><span class="info-label">Team Size</span><span class="info-val">6 people</span></div>
+      <div class="info-row"><span class="info-label">Duration</span><span class="info-val">~8 months</span></div>
+      <div class="info-row"><span class="info-label">Status</span><span class="info-val" style="color:#4ade80">Completed</span></div>
+      <div class="social-section">
+        <div class="sidebar-heading">Links</div>
+        <a href="https://www.instagram.com/sushibytte/" target="_blank" class="social-link">
+          <span>Instagram</span><span class="arrow">→</span>
+        </a>
+        <a href="https://itch.io/profile/sushibytte" target="_blank" class="social-link">
+          <span>Itch.io</span><span class="arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+</div>
+
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button class="lb-btn" id="lbPrev" onclick="prevImg()">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lb-btn" id="lbNext" onclick="nextImg()">›</button>
+  <button class="lb-btn" id="lbClose" onclick="closeGallery()">✕</button>
+</div>
+
+<footer>
+  <p>Alís González · Game Designer · Madrid · 2025</p>
+</footer>
+
+<script>
+/* Carousel */
+let idx=0;
+const slides=document.querySelectorAll('.slide');
+const dotsEl=document.getElementById('dots');
+function updateCarousel(){slides.forEach((s,i)=>s.classList.toggle('active',i===idx));renderDots()}
+function next(){idx=(idx+1)%slides.length;updateCarousel()}
+function prev(){idx=(idx-1+slides.length)%slides.length;updateCarousel()}
+function renderDots(){dotsEl.innerHTML='';slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===idx?' active':'');d.onclick=()=>{idx=i;updateCarousel()};dotsEl.appendChild(d)})}
+renderDots();
+
+/* Lightbox */
+const gallery=[
+  ["https://i.ibb.co/2789Ttqr/IMG-1687-1.jpg","https://i.ibb.co/svHJ42Dh/Dise-o-sin-t-tulo-4.png","https://i.ibb.co/dwrjJYMJ/image-64.png"],
+  ["https://i.ibb.co/6RxsyGNk/image.png","https://i.ibb.co/wZ25YHN8/image-67.png","https://i.ibb.co/whW8sqnk/image-68.png"],
+  ["https://i.ibb.co/Y7z8BZSK/image-70.png","https://i.ibb.co/8n7BP1F0/image-71.png","https://i.ibb.co/r27XcT0n/image-69.png"]
+];
+let lbCat=0,lbImg=0;
+function openGallery(cat,img){lbCat=cat;lbImg=img;document.getElementById('lightbox').classList.add('open');updateLb()}
+function updateLb(){document.getElementById('lightboxImg').src=gallery[lbCat][lbImg]}
+function nextImg(){lbImg=(lbImg+1)%gallery[lbCat].length;updateLb()}
+function prevImg(){lbImg=(lbImg-1+gallery[lbCat].length)%gallery[lbCat].length;updateLb()}
+function closeGallery(){document.getElementById('lightbox').classList.remove('open')}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeGallery()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGallery();if(e.key==='ArrowRight')nextImg();if(e.key==='ArrowLeft')prevImg()});
+</script>
 </body>
 </html>
