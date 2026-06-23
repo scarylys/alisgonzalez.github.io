@@ -1,347 +1,315 @@
 ﻿<!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>To Be Named - Project</title>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>To Be Named — Alís González</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#07090f;--ink2:#0f1623;--ink3:#1a2540;
+  --gold:#a78bfa;--gold2:#c4b5fd;--ice:#4fc3f7;
+  --text:#d4cfc8;--muted:#717a94;
+  --subtle:rgba(167,139,250,.12);--bord:rgba(167,139,250,.18);--bord2:rgba(255,255,255,.07);
+  --rad:6px;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--text);font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+::selection{background:rgba(167,139,250,.25)}
 
-    <script src="https://cdn.tailwindcss.com"></script>
+nav{position:fixed;top:0;width:100%;background:rgba(7,9,15,.88);border-bottom:1px solid var(--bord2);backdrop-filter:blur(16px);z-index:200}
+.nav-inner{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:13px 28px}
+.nav-back{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 18px;border:1px solid var(--bord2);color:var(--muted);border-radius:var(--rad);transition:color .2s,border-color .2s}
+.nav-back:hover{color:var(--gold);border-color:var(--bord)}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--gold)}
+.nav-hire{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 18px;border:1px solid var(--bord);color:var(--gold);border-radius:var(--rad);transition:background .2s}
+.nav-hire:hover{background:var(--subtle)}
+@media(max-width:760px){.nav-links{display:none}}
 
-    <style>
-        html {
-            scroll-behavior: smooth;
-        }
+.hero{position:relative;height:65vh;min-height:420px;background-size:cover;background-position:center;overflow:hidden}
+.hero-shade{position:absolute;inset:0;background:linear-gradient(to top,var(--ink) 10%,rgba(7,9,15,.45) 60%,rgba(7,9,15,.3) 100%)}
+.hero-content{position:absolute;bottom:0;left:0;right:0;max-width:1160px;margin:auto;padding:0 28px 40px}
+.hero-tag{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:10px}
+.hero-tag::before{content:'';width:20px;height:1px;background:var(--gold);opacity:.5}
+.hero-title{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(2.8rem,6vw,5rem);line-height:.95;letter-spacing:-.03em;color:#fff;margin-bottom:12px}
+.hero-sub{font-family:'JetBrains Mono',monospace;font-size:.78rem;color:var(--muted);margin-bottom:20px;letter-spacing:.06em}
+.hero-tags{display:flex;gap:8px;flex-wrap:wrap}
+.htag{font-family:'JetBrains Mono',monospace;font-size:.62rem;padding:4px 12px;border-radius:20px;letter-spacing:.06em}
+.htag-skill{background:var(--subtle);border:1px solid var(--bord);color:var(--gold)}
+.htag-tool{background:rgba(255,255,255,.04);border:1px solid var(--bord2);color:var(--muted)}
 
-        body {
-            margin: 0;
-            background: #070b10;
-            color: white;
-            font-family: sans-serif;
-        }
+.content-wrap{max-width:1160px;margin:auto;padding:60px 28px 96px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start}
+@media(max-width:900px){.content-wrap{grid-template-columns:1fr}}
+.main-col{display:flex;flex-direction:column;gap:56px}
 
-        .btn {
-            padding: 6px 12px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.15);
-            transition: 0.25s;
-            display: inline-block;
-            text-decoration: none;
-        }
+.sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.5rem;color:#fff;letter-spacing:-.02em;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--bord2)}
 
-            .btn:hover {
-                border-color: #22d3ee;
-                color: #22d3ee;
-            }
+.carousel{position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--bord2)}
+.slide{position:absolute;inset:0;opacity:0;transition:.5s ease;background-size:cover;background-position:center;background-repeat:no-repeat}
+.slide.active{opacity:1}
+.arrow{position:absolute;top:50%;transform:translateY(-50%);width:36px;height:36px;border-radius:50%;background:rgba(7,9,15,.7);border:1px solid var(--bord2);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--text);font-size:1.1rem;transition:border-color .2s,color .2s}
+.arrow:hover{border-color:var(--bord);color:var(--gold)}
+.arrow-left{left:12px}
+.arrow-right{right:12px}
+.dots{position:absolute;bottom:10px;width:100%;display:flex;justify-content:center;gap:6px;z-index:10}
+.dot{width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);cursor:pointer;transition:background .2s}
+.dot.active{background:var(--gold)}
 
-        .btn-primary {
-            background: #22d3ee;
-            color: #070b10;
-            font-weight: 600;
-        }
+.overview-text{font-size:.9rem;color:var(--muted);line-height:1.85}
 
-            .btn-primary:hover {
-                background: #67e8f9;
-                color: #070b10;
-            }
+.dropdown{border:1px solid var(--bord2);border-radius:10px;overflow:hidden;transition:border-color .2s}
+.dropdown:hover{border-color:var(--bord)}
+.dropdown summary{cursor:pointer;padding:16px 20px;font-family:'JetBrains Mono',monospace;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);list-style:none;display:flex;align-items:center;gap:10px;user-select:none}
+.dropdown summary::before{content:'▸';font-size:.7rem;transition:transform .2s;display:inline-block}
+.dropdown[open] summary::before{transform:rotate(90deg)}
+.dropdown summary::-webkit-details-marker{display:none}
+.dd-body{padding:0 20px 20px}
+.dd-desc{font-size:.83rem;color:var(--muted);line-height:1.8;margin-bottom:16px;padding:12px 14px;background:rgba(255,255,255,.03);border-radius:var(--rad);border-left:2px solid var(--bord)}
+.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+@media(max-width:560px){.img-grid{grid-template-columns:1fr 1fr}}
+.img-item{position:relative;aspect-ratio:1;border-radius:var(--rad);overflow:hidden;cursor:pointer;border:1px solid var(--bord2);transition:border-color .2s}
+.img-item:hover{border-color:var(--bord)}
+.img-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.img-item:hover img{transform:scale(1.04)}
+.img-label{position:absolute;top:8px;left:8px;font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.1em;text-transform:uppercase;padding:3px 8px;border-radius:4px;background:rgba(7,9,15,.75);color:var(--text);border:1px solid var(--bord2)}
 
-        .hero {
-            position: relative;
-            height: 60vh;
-            background-size: cover;
-            background-position: center;
-        }
+#lightbox{position:fixed;inset:0;background:rgba(5,8,18,.95);display:none;align-items:center;justify-content:center;z-index:500;backdrop-filter:blur(8px)}
+#lightbox.open{display:flex}
+#lightboxImg{max-width:85%;max-height:85vh;border-radius:8px;border:1px solid var(--bord)}
+.lb-btn{position:absolute;width:40px;height:40px;border-radius:50%;background:var(--ink2);border:1px solid var(--bord2);color:var(--muted);font-size:1.1rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:color .2s,border-color .2s}
+.lb-btn:hover{color:var(--gold);border-color:var(--bord)}
+#lbPrev{left:20px;top:50%;transform:translateY(-50%)}
+#lbNext{right:20px;top:50%;transform:translateY(-50%)}
+#lbClose{top:20px;right:20px}
 
-            .hero::after {
-                content: "";
-                position: absolute;
-                inset: 0;
-                background: linear-gradient(to top, #070b10 15%, transparent 70%);
-            }
+.learned-text{font-size:.9rem;color:var(--muted);line-height:1.85;margin-bottom:24px}
+.tag-group{margin-bottom:16px}
+.tag-group-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.tags-row{display:flex;flex-wrap:wrap;gap:7px}
+.tag-sk{font-family:'JetBrains Mono',monospace;font-size:.63rem;padding:4px 12px;border-radius:20px;background:var(--subtle);border:1px solid var(--bord);color:var(--gold);letter-spacing:.05em}
+.tag-tl{font-family:'JetBrains Mono',monospace;font-size:.63rem;padding:4px 12px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--bord2);color:var(--muted);letter-spacing:.05em}
 
-        .hero-content {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            z-index: 2;
-        }
+.btn-gold{padding:11px 28px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border-radius:var(--rad);border:none;cursor:pointer;box-shadow:0 0 24px rgba(167,139,250,.2);transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 4px 32px rgba(167,139,250,.35)}
+.btn-outline{padding:11px 28px;background:transparent;border:1px solid var(--bord2);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-radius:var(--rad);transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:8px}
+.btn-outline:hover{border-color:var(--gold);color:var(--gold)}
+.btn-row{display:flex;gap:12px;flex-wrap:wrap}
 
-        .tag {
-            padding: 4px 10px;
-            border-radius: 999px;
-            font-size: 12px;
-        }
+.sidebar-card{background:var(--ink2);border:1px solid var(--bord2);border-radius:10px;padding:24px}
+aside{position:sticky;top:80px;align-self:start}
+.sidebar-heading{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.info-row{display:flex;flex-direction:column;gap:2px;padding:10px 0;border-bottom:1px solid var(--bord2)}
+.info-row:last-of-type{border-bottom:none}
+.info-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+.info-val{font-size:.88rem;color:var(--text)}
+.social-section{margin-top:20px;padding-top:20px;border-top:1px solid var(--bord2)}
+.social-link{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border-radius:var(--rad);border:1px solid var(--bord2);margin-bottom:8px;transition:border-color .2s,background .2s;color:var(--text)}
+.social-link:hover{border-color:var(--bord);background:var(--ink3);color:var(--gold)}
+.social-link span{font-size:.84rem}
+.social-arrow{font-size:.8rem;color:var(--muted);transition:transform .2s,color .2s}
+.social-link:hover .social-arrow{transform:translateX(3px);color:var(--gold)}
 
-        .tag-skill {
-            border: 1px solid rgba(34,211,238,0.4);
-            background: rgba(34,211,238,0.1);
-            color: #22d3ee;
-        }
-
-        .tag-tool {
-            border: 1px solid rgba(255,255,255,0.2);
-            background: rgba(255,255,255,0.05);
-            color: rgba(255,255,255,0.8);
-        }
-
-        .carousel {
-            position: relative;
-            width: 100%;
-            aspect-ratio: 16 / 9;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .slide {
-            position: absolute;
-            inset: 0;
-            opacity: 0;
-            transition: 0.5s ease;
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
-
-            .slide.active {
-                opacity: 1;
-            }
-
-        .arrow {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: rgba(0,0,0,0.5);
-            border: 1px solid rgba(255,255,255,0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: white;
-            z-index: 10;
-        }
-
-        .left {
-            left: 10px;
-        }
-
-        .right {
-            right: 10px;
-        }
-
-        .dots {
-            position: absolute;
-            bottom: 10px;
-            width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            z-index: 10;
-        }
-
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.3);
-            cursor: pointer;
-        }
-
-            .dot.active {
-                background: #22d3ee;
-            }
-
-        .card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 16px;
-            padding: 20px;
-            position: sticky;
-            top: 90px;
-            align-self: flex-start;
-            height: fit-content;
-        }
-
-        /* IMPORTANTE: esto hace que el aside se quede arriba y sticky funcione */
-        aside {
-            align-self: flex-start;
-            position: sticky;
-            top: 90px;
-            height: fit-content;
-        }
-    </style>
+footer{text-align:center;padding:36px 24px 40px;border-top:1px solid var(--bord2)}
+footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
+</style>
 </head>
 <body>
 
-    <nav class="fixed top-0 w-full bg-[#070b10]/80 border-b border-white/10 z-50">
-        <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-3 text-sm">
-            <a href="#" onclick="window.history.back(); return false;" class="btn">← Back</a>
+<nav>
+  <div class="nav-inner">
+    <a href="javascript:history.back()" class="nav-back">← Back</a>
+    <ul class="nav-links">
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#whatidid">My Work</a></li>
+      <li><a href="#learned">What I Learned</a></li>
+    </ul>
+    <a href="index.html#contact" class="nav-hire">Hire Me</a>
+  </div>
+</nav>
 
-            <div class="hidden md:flex gap-6 text-white/60">
-                <a href="#overview">Overview</a>
-                <a href="#whatidid">What I Did</a>
-                <a href="#learned">What I Learned</a>
+<section class="hero" style="background-image:url('https://img.itch.zone/aW1nLzE5Mzc2Nzg1LnBuZw==/original/4fpv%2FL.png')">
+  <div class="hero-shade"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Team Project · Godot</div>
+    <h1 class="hero-title">To Be Named</h1>
+    <p class="hero-sub">Turn-Based RPG · Godot</p>
+    <div class="hero-tags">
+      <span class="htag htag-tool">Godot</span>
+      <span class="htag htag-tool">Procreate</span>
+      <span class="htag htag-tool">Sourcetree</span>
+      <span class="htag htag-skill">UI Design</span>
+      <span class="htag htag-skill">Level Design</span>
+      <span class="htag htag-skill">Systems Design</span>
+    </div>
+  </div>
+</section>
+
+<div class="content-wrap">
+  <div class="main-col">
+
+    <div>
+      <div class="sec-title">Screenshots</div>
+      <div class="carousel">
+        <div class="slide active" style="background-image:url('https://i.ibb.co/4ZBsy7zg/image.png')"></div>
+        <div class="slide" style="background-image:url('https://i.ibb.co/LzJXNPkh/image.png')"></div>
+        <div class="slide" style="background-image:url('https://i.ibb.co/wr2Wmrfp/26.png')"></div>
+        <div class="slide" style="background-image:url('https://i.ibb.co/wFYJ1mWP/image.png')"></div>
+        <button class="arrow arrow-left" onclick="prev()">‹</button>
+        <button class="arrow arrow-right" onclick="next()">›</button>
+        <div class="dots" id="dots"></div>
+      </div>
+    </div>
+
+    <div id="overview">
+      <div class="sec-title">Overview</div>
+      <p class="overview-text">To Be Named is a turn-based JRPG where a nameless knight ascends a tower filled with 17 different enemy types, traps, roaming threats, and loot. The player improves their character over time by unlocking new attacks and using items while surviving increasingly dangerous encounters.</p>
+    </div>
+
+    <div id="whatidid">
+      <div class="sec-title">What I Did</div>
+      <p style="font-size:.9rem;color:var(--muted);line-height:1.85;margin-bottom:20px">I contributed across UI, level structure, and progression systems — making sure the interfaces were clear and usable, the encounters were paced well, and the level-up loop felt rewarding.</p>
+
+      <div style="display:flex;flex-direction:column;gap:10px">
+        <details class="dropdown">
+          <summary>UI Design & Implementation</summary>
+          <div class="dd-body">
+            <p class="dd-desc">Designed and implemented the in-game interfaces for combat, inventory, and progression screens. Focused on clarity and usability so the player always knows their options at a glance.</p>
+            <div class="img-grid">
+              <div class="img-item" onclick="openGallery(0,0)">
+                <img src="https://i.ibb.co/4ZBsy7zg/image.png" alt="Combat UI">
+                <div class="img-label">Combat UI</div>
+              </div>
+              <div class="img-item" onclick="openGallery(0,1)">
+                <img src="https://i.ibb.co/wFYJ1mWP/image.png" alt="Screen flow">
+                <div class="img-label">Screen flow</div>
+              </div>
+              <div class="img-item" onclick="openGallery(0,2)">
+                <img src="https://i.ibb.co/LzJXNPkh/image.png" alt="Inventory">
+                <div class="img-label">Inventory</div>
+              </div>
             </div>
+          </div>
+        </details>
 
-            <a href="index.html#contact" class="btn btn-primary">Hire Me</a>
+        <details class="dropdown">
+          <summary>Level Design</summary>
+          <div class="dd-body">
+            <p class="dd-desc">Structured how encounters, traps, and exploration moments were distributed across the tower floors to control pacing and difficulty curve without making the climb feel repetitive.</p>
+            <div class="img-grid">
+              <div class="img-item" onclick="openGallery(1,0)">
+                <img src="https://i.ibb.co/wr2Wmrfp/26.png" alt="Tower layout">
+                <div class="img-label">Tower layout</div>
+              </div>
+            </div>
+          </div>
+        </details>
+
+        <details class="dropdown">
+          <summary>Progression System</summary>
+          <div class="dd-body">
+            <p class="dd-desc">Collaborated on the character level-up system — how the player improves stats and unlocks abilities as they gain experience, balancing power growth against increasing enemy difficulty.</p>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <div id="learned">
+      <div class="sec-title">What I Learned</div>
+      <p class="learned-text">I developed a better understanding of how to design interfaces that support gameplay flow in a turn-based context, where information density matters a lot. Working on level structure taught me how encounter distribution shapes pacing and tension over a long run. I also got comfortable with Godot, implementing UI and gameplay systems and understanding how they connect within a full project.</p>
+      <div class="tag-group">
+        <div class="tag-group-label">Skills</div>
+        <div class="tags-row">
+          <span class="tag-sk">UI Design</span>
+          <span class="tag-sk">Level Design</span>
+          <span class="tag-sk">Progression Systems</span>
+          <span class="tag-sk">Turn-Based RPG Design</span>
+          <span class="tag-sk">Pacing</span>
         </div>
-    </nav>
-
-    <section class="hero" style="background-image: url('https://img.itch.zone/aW1nLzE5Mzc2Nzg1LnBuZw==/original/4fpv%2FL.png')">
-        <div class="hero-content">
-            <h1 class="text-4xl font-bold">To Be Named</h1>
-            <p class="text-cyan-400">Turn-based RPG | Godot</p>
-
-            <div class="flex gap-2 mt-2 flex-wrap">
-                <span class="tag tag-tool">Unreal Engine</span>
-                <span class="tag tag-skill">Level Design</span>
-                <span class="tag tag-skill">Systems Design</span>
-            </div>
+      </div>
+      <div class="tag-group">
+        <div class="tag-group-label" style="color:var(--text)">Tools</div>
+        <div class="tags-row">
+          <span class="tag-tl">Godot</span>
+          <span class="tag-tl">Procreate</span>
+          <span class="tag-tl">Sourcetree</span>
         </div>
-    </section>
+      </div>
+    </div>
 
-    <section class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row gap-10 items-start">
+    <div class="btn-row">
+      <a href="https://www.youtube.com/watch?v=XvFrFaxyk78" target="_blank" class="btn-gold">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5,3 19,12 5,21"/></svg>
+        Watch Trailer
+      </a>
+      <a href="https://javiermayor.itch.io/to-be-named" target="_blank" class="btn-outline">
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+        Play on Itch.io
+      </a>
+    </div>
 
-        <div class="space-y-14 flex-1">
+  </div>
 
-            <div>
-                <h2 class="text-2xl mb-4">Screenshots</h2>
+  <aside>
+    <div class="sidebar-card">
+      <div class="sidebar-heading">Project Info</div>
+      <div class="info-row"><span class="info-label">Engine</span><span class="info-val">Godot</span></div>
+      <div class="info-row"><span class="info-label">Genre</span><span class="info-val">Turn-Based RPG</span></div>
+      <div class="info-row"><span class="info-label">Role</span><span class="info-val">Game Designer</span></div>
+      <div class="info-row"><span class="info-label">Focus</span><span class="info-val">UI, Level Design, Systems</span></div>
+      <div class="info-row"><span class="info-label">Duration</span><span class="info-val">~3 months</span></div>
+      <div class="info-row"><span class="info-label">Status</span><span class="info-val" style="color:#4ade80">Completed</span></div>
+      <div class="social-section">
+        <div class="sidebar-heading">Links</div>
+        <a href="https://javiermayor.itch.io/to-be-named" target="_blank" class="social-link">
+          <span>Itch.io</span><span class="social-arrow">→</span>
+        </a>
+        <a href="https://www.youtube.com/watch?v=XvFrFaxyk78" target="_blank" class="social-link">
+          <span>Trailer</span><span class="social-arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </aside>
+</div>
 
-                <div class="carousel">
-                    <div class="slide active" style="background-image: url('https://i.ibb.co/4ZBsy7zg/image.png')"></div>
-                    <div class="slide" style="background-image: url('https://i.ibb.co/LzJXNPkh/image.png')"></div>
-                    <div class="slide" style="background-image: url('https://i.ibb.co/wr2Wmrfp/26.png')"></div>
-                    <div class="slide" style="background-image: url('https://i.ibb.co/wFYJ1mWP/image.png')"></div>
+<div id="lightbox">
+  <button class="lb-btn" id="lbPrev" onclick="prevImg()">‹</button>
+  <img id="lightboxImg" src="" alt="">
+  <button class="lb-btn" id="lbNext" onclick="nextImg()">›</button>
+  <button class="lb-btn" id="lbClose" onclick="closeGallery()">✕</button>
+</div>
 
-                    <button class="arrow left" onclick="prev()">‹</button>
-                    <button class="arrow right" onclick="next()">›</button>
-                    <div class="dots" id="dots"></div>
-                </div>
-            </div>
+<footer>
+  <p>Alís González · Game Designer · Madrid · 2025</p>
+</footer>
 
-            <div id="overview">
-                <h2 class="text-2xl mb-2">Overview</h2>
-                <p class="text-white/60">
-                    To Be Named is a turn-based JRPG where a nameless knight ascends a tower filled with 17 different enemy types, traps, roaming threats, and loot. The player improves their character over time by unlocking new attacks and using items while surviving increasingly dangerous encounters.
-                </p>
-            </div>
+<script>
+let idx=0;
+const slides=document.querySelectorAll('.slide');
+const dotsEl=document.getElementById('dots');
+function updateCarousel(){slides.forEach((s,i)=>s.classList.toggle('active',i===idx));renderDots()}
+function next(){idx=(idx+1)%slides.length;updateCarousel()}
+function prev(){idx=(idx-1+slides.length)%slides.length;updateCarousel()}
+function renderDots(){dotsEl.innerHTML='';slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===idx?' active':'');d.onclick=()=>{idx=i;updateCarousel()};dotsEl.appendChild(d)})}
+renderDots();
 
-            <div id="whatidid">
-                <h2 class="text-2xl mb-2">What I Did</h2>
-                <p class="text-white/60">
-                    I worked on the UI design and its functionality, ensuring clear and usable interfaces for combat, progression, and in-game systems. I also contributed to level design, helping structure how encounters, traps, and exploration were distributed throughout the tower to maintain pacing and tension.
-
-                    In addition, I collaborated on the character progression system (level-up system), supporting the implementation of how the player improves stats and abilities as they gain experience.
-                </p>
-            </div>
-
-            <div id="learned">
-                <h2 class="text-2xl mb-2">What I Learned</h2>
-                <p class="text-white/60">
-                    I learned how to design and implement functional game interfaces that support clarity and gameplay flow in a turn-based RPG. Working on level design helped me understand how to structure encounters and environmental challenges to control pacing and difficulty.
-
-                    I also gained experience with RPG progression systems and how they affect player motivation and balance. On a technical level, I improved my skills working with Godot, becoming more comfortable implementing UI and gameplay systems inside the engine and understanding how different systems connect within a full project.
-                </p>
-                <!-- TAGS -->
-                <div class="mt-4 space-y-3">
-
-                    <div>
-                        <p class="text-sm text-cyan-400 mb-1 font-semibold">SKILLS</p>
-                        <div class="flex gap-2 flex-wrap">
-                            <span class="tag tag-skill">Gameplay systems support (level-up / progression system)</span>
-                            <span class="tag tag-skill">Level Design</span>
-                            <span class="tag tag-skill">UI design & implementation</span>
-                            <span class="tag tag-skill">Turn-based RPG structure understanding</span>
-
-                        </div>
-                    </div>
-
-                    <div>
-                        <p class="text-sm text-white mb-1 font-semibold">TOOLS</p>
-                        <div class="flex gap-2 flex-wrap">
-                            <span class="tag tag-tool">Godot</span>
-                            <span class="tag tag-tool">Procreate</span>
-                             <span class="tag tag-tool">Sourcetree</span>
-                        </div>
-                    </div>
-                    <!-- BOTONES -->
-                    <div class="pt-10 flex gap-4 flex-wrap">
-                        <a href="https://www.youtube.com/watch?v=XvFrFaxyk78"
-                           class="btn btn-primary"
-                           target="_blank">
-                            Trailer
-                        </a>
-                    </div>
-
-                </div>
-                </div>
-
-        </div>
-       
-
-
-
-        <!-- SIDEBAR -->
-        <aside>
-            <div class="card">
-                <h3 class="text-cyan-400 mb-3 font-semibold">Project Info</h3>
-                <p><b>Engine:</b> Godot</p>
-                <p><b>Genre:</b> Turn-based RPG</p>
-                <p><b>Role:</b> Game Designer</p>
-                <p><b>Focus:</b> Systems, UI & Level Design</p>
-
-                <!-- SOCIAL MEDIA -->
-                <div class="mt-5">
-                    <h4 class="text-cyan-400 mb-2 font-semibold">Social Media</h4>
-                    <a href="https://javiermayor.itch.io/to-be-named" target="_blank" class="block text-blue-400 hover:underline">
-                        Itch.io
-
-                    </a>
-                </div>
-            </div>
-        </aside>
-
-    </section>
-    <script>
-        let index = 0;
-        const slides = document.querySelectorAll('.slide');
-        const dotsContainer = document.getElementById('dots');
-
-        function update() {
-            slides.forEach((slide, i) => {
-                slide.classList.toggle('active', i === index);
-            });
-            renderDots();
-        }
-
-        function next() {
-            index = (index + 1) % slides.length;
-            update();
-        }
-
-        function prev() {
-            index = (index - 1 + slides.length) % slides.length;
-            update();
-        }
-
-        function renderDots() {
-            dotsContainer.innerHTML = '';
-
-            slides.forEach((_, i) => {
-                const dot = document.createElement('div');
-                dot.className = 'dot' + (i === index ? ' active' : '');
-                dot.onclick = () => {
-                    index = i;
-                    update();
-                };
-                dotsContainer.appendChild(dot);
-            });
-        }
-
-        renderDots();
-    </script>
-
+const gallery=[
+  ["https://i.ibb.co/4ZBsy7zg/image.png","https://i.ibb.co/wFYJ1mWP/image.png","https://i.ibb.co/LzJXNPkh/image.png"],
+  ["https://i.ibb.co/wr2Wmrfp/26.png"]
+];
+let lbCat=0,lbImg=0;
+function openGallery(cat,img){lbCat=cat;lbImg=img;document.getElementById('lightbox').classList.add('open');updateLb()}
+function updateLb(){document.getElementById('lightboxImg').src=gallery[lbCat][lbImg]}
+function nextImg(){lbImg=(lbImg+1)%gallery[lbCat].length;updateLb()}
+function prevImg(){lbImg=(lbImg-1+gallery[lbCat].length)%gallery[lbCat].length;updateLb()}
+function closeGallery(){document.getElementById('lightbox').classList.remove('open')}
+document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeGallery()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGallery();if(e.key==='ArrowRight')nextImg();if(e.key==='ArrowLeft')prevImg()});
+</script>
 </body>
 </html>
