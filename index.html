@@ -21,7 +21,6 @@ a{text-decoration:none;color:inherit}
 ::selection{background:rgba(167,139,250,.25)}
 body::after{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:9998}
 
-/* ── LOADING ── */
 #loading{position:fixed;inset:0;background:var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;z-index:9999}
 .load-doc{width:min(480px,88vw);font-family:'JetBrains Mono',monospace;font-size:.72rem;color:rgba(167,139,250,.55);line-height:1.9}
 .load-doc .ld-line{opacity:0;animation:linein .12s ease forwards}
@@ -33,7 +32,6 @@ body::after{content:'';position:fixed;inset:0;background-image:url("data:image/s
 @keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
 @keyframes sl{0%,100%{opacity:.3}50%{opacity:.8}}
 
-/* ── NAV ── */
 nav{position:fixed;top:0;width:100%;background:rgba(7,9,15,.88);border-bottom:1px solid var(--bord2);backdrop-filter:blur(16px);z-index:200}
 .nav-inner{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:13px 28px}
 .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:.88rem;letter-spacing:.06em;color:var(--gold)}
@@ -53,7 +51,6 @@ nav{position:fixed;top:0;width:100%;background:rgba(7,9,15,.88);border-bottom:1p
 .mobile-menu a:hover{color:var(--gold)}
 @media(max-width:860px){.nav-links{display:none}.nav-right .nav-cv{display:none}.nav-toggle{display:flex}}
 
-/* ── HERO ── */
 #home{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background-image:url('https://i.ibb.co/4Zh536tR/Dise-o-sin-t-tulo-3.png');background-size:cover;background-position:center;filter:brightness(.18) saturate(1.1)}
 .hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%,transparent 0%,rgba(7,9,15,.7) 100%),linear-gradient(to bottom,rgba(7,9,15,.5) 0%,transparent 30%,rgba(7,9,15,.98) 100%)}
@@ -79,13 +76,11 @@ nav{position:fixed;top:0;width:100%;background:rgba(7,9,15,.88);border-bottom:1p
 .hero-scroll span{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;color:var(--muted)}
 .hs-line{width:1px;height:32px;background:linear-gradient(to bottom,var(--muted),transparent);animation:sl 2s ease-in-out infinite}
 
-/* ── BUTTONS ── */
 .btn-gold{padding:11px 28px;background:linear-gradient(135deg,#7c3aed,#a78bfa);color:#fff;font-family:'Syne',sans-serif;font-weight:700;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;border-radius:var(--rad);border:none;cursor:pointer;box-shadow:0 0 24px rgba(167,139,250,.2);transition:transform .2s,box-shadow .2s;display:inline-flex;align-items:center;gap:8px}
 .btn-gold:hover{transform:translateY(-2px);box-shadow:0 4px 32px rgba(167,139,250,.35)}
 .btn-outline{padding:11px 28px;background:transparent;border:1px solid var(--bord2);color:var(--text);font-family:'JetBrains Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;border-radius:var(--rad);transition:border-color .2s,color .2s;display:inline-flex;align-items:center;gap:8px}
 .btn-outline:hover{border-color:var(--gold);color:var(--gold)}
 
-/* ── SECTION SHARED ── */
 section{position:relative;z-index:1}
 .wrap{max-width:1160px;margin:auto;padding:96px 28px}
 .sec-header{display:flex;align-items:baseline;gap:20px;margin-bottom:60px}
@@ -96,7 +91,6 @@ section{position:relative;z-index:1}
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
 .reveal.up{opacity:1;transform:none}
 
-/* ── PROJECTS ── */
 .proj-featured{display:grid;grid-template-columns:1.1fr 1fr;gap:0;border:1px solid var(--bord);border-radius:10px;overflow:hidden;margin-bottom:24px;background:var(--ink2);transition:border-color .3s}
 .proj-featured:hover{border-color:rgba(167,139,250,.35)}
 @media(max-width:780px){.proj-featured{grid-template-columns:1fr}}
@@ -142,8 +136,8 @@ section{position:relative;z-index:1}
 .pc-meta-val{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--text)}
 .pc-tags{display:flex;flex-wrap:wrap;gap:6px}
 .pc-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--bord2);color:var(--muted);letter-spacing:.05em}
+.pc-tag-steam{background:rgba(79,195,247,.07);border-color:rgba(79,195,247,.22);color:#4fc3f7}
 
-/* ── EXPERIENCE ── */
 .exp-row{display:grid;grid-template-columns:140px 1fr;padding:36px 0;border-top:1px solid var(--bord2);gap:40px}
 @media(max-width:640px){.exp-row{grid-template-columns:1fr;gap:12px}}
 .exp-period{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--gold);letter-spacing:.08em}
@@ -153,7 +147,6 @@ section{position:relative;z-index:1}
 .exp-tags{display:flex;flex-wrap:wrap;gap:7px}
 .exp-tag{font-family:'JetBrains Mono',monospace;font-size:.63rem;padding:4px 11px;border-radius:20px;background:rgba(196,123,90,.1);border:1px solid rgba(196,123,90,.25);color:#c49a82;letter-spacing:.06em}
 
-/* ── ABOUT ── */
 .about-grid{display:grid;grid-template-columns:260px 1fr;gap:64px;align-items:start}
 @media(max-width:780px){.about-grid{grid-template-columns:1fr}}
 .profile-card{border-radius:10px;overflow:hidden;border:1px solid var(--bord);aspect-ratio:3/4;position:relative}
@@ -181,7 +174,6 @@ section{position:relative;z-index:1}
 .edu-logo{width:26px;height:26px;border-radius:4px;background:rgba(255,255,255,.04);overflow:hidden;display:flex;align-items:center;justify-content:center}
 .edu-logo img{width:100%;height:100%;object-fit:contain;opacity:.7}
 
-/* ── CERTIFICATES ── */
 .certs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
 .cert-card{padding:22px 24px;background:var(--ink2);border:1px solid var(--bord2);border-radius:var(--rad);transition:border-color .25s,background .25s;display:flex;gap:16px;align-items:flex-start;color:inherit;cursor:pointer}
 .cert-card:hover{border-color:var(--bord);background:var(--ink3)}
@@ -196,7 +188,6 @@ section{position:relative;z-index:1}
 .cert-badge.verified{background:rgba(74,222,128,.08);border:1px solid rgba(74,222,128,.2);color:#4ade80}
 .cert-badge.completed{background:rgba(79,195,247,.08);border:1px solid rgba(79,195,247,.2);color:var(--ice)}
 
-/* ── CONTACT ── */
 .contact-avail{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',monospace;font-size:.67rem;letter-spacing:.12em;text-transform:uppercase;color:#4ade80;margin-bottom:20px}
 .contact-avail::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;animation:pdot 2s infinite;display:inline-block}
 .contact-intro-text{font-size:.92rem;color:var(--muted);line-height:1.85;margin-bottom:36px;max-width:600px}
@@ -218,7 +209,6 @@ section{position:relative;z-index:1}
 .sr-arrow{font-size:.8rem;color:var(--muted);transition:transform .2s,color .2s}
 .social-row:hover .sr-arrow{transform:translateX(4px);color:var(--gold)}
 
-/* ── CERT MODAL ── */
 #certModal{position:fixed;inset:0;background:rgba(5,8,18,.92);backdrop-filter:blur(8px);z-index:500;display:none;align-items:center;justify-content:center;padding:24px}
 #certModal.open{display:flex}
 .modal-inner{position:relative;max-width:780px;width:100%;max-height:90vh;display:flex;flex-direction:column;align-items:center;gap:16px}
@@ -227,7 +217,6 @@ section{position:relative;z-index:1}
 .modal-close:hover{color:var(--gold);border-color:var(--bord)}
 .modal-caption{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.1em;text-align:center}
 
-/* ── FOOTER ── */
 footer{text-align:center;padding:36px 24px 40px;border-top:1px solid var(--bord2);position:relative;z-index:1}
 footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
 </style>
@@ -236,13 +225,11 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 
 <canvas id="stars" style="position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.4"></canvas>
 
-<!-- LOADING -->
 <div id="loading">
   <div class="load-doc" id="loadDoc"></div>
   <div class="load-bar-wrap" style="margin-top:8px"><div class="load-bar"></div></div>
 </div>
 
-<!-- NAV -->
 <nav>
   <div class="nav-inner">
     <span class="nav-logo">Alís González</span>
@@ -274,7 +261,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
   </div>
 </nav>
 
-<!-- HERO -->
 <section id="home">
   <div class="hero-bg"></div>
   <div class="hero-vignette"></div>
@@ -305,7 +291,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 
 <hr class="divider">
 
-<!-- PROJECTS -->
 <section id="projects">
   <div class="wrap">
     <div class="sec-header reveal">
@@ -315,9 +300,12 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
     </div>
 
     <a href="Luma.html" class="proj-featured reveal">
-      <div class="pf-thumb" style="background-image:url('https://i.ibb.co/gx7mzZ5/image-5.png')"><div class="pf-thumb-shade"></div></div>
+      <div class="pf-thumb" style="background-image:url('https://i.ibb.co/gx7mzZ5/image-5.png')">
+          <div class="pf-thumb-shade"></div>
+          <div style="position:absolute;top:12px;right:12px;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(79,195,247,.12);border:1px solid rgba(79,195,247,.3);color:#4fc3f7;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#4fc3f7;animation:pdot 1.4s infinite;flex-shrink:0;display:inline-block"></span>Coming soon on Steam</div>
+        </div>
       <div class="pf-body">
-        <div class="pf-badge">Featured · Design & Documentation</div>
+        <div class="pf-badge">Featured · Design &amp; Documentation · <span style="color:#4fc3f7">Coming soon on Steam</span></div>
         <div class="pf-name">Luma</div>
         <div class="pf-genre">Semi-Open World Adventure · Unreal Engine 5</div>
         <p class="pf-desc">Portfolio centerpiece. Designed all game systems from the ground up: narrative design, level design, economy, combat, progression, and UI/UX (prior to any implementation).</p>
@@ -336,7 +324,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
     <div class="proj-grid" style="margin-top:20px">
 
       <a href="Unstrung.html" class="proj-card wip reveal" style="transition-delay:.1s">
-        <div class="pc-thumb" style="background-image: url('https://i.ibb.co/hRmxsSWr/Portada-Unstrung-Horizontal-2.png')">
+        <div class="pc-thumb" style="background-image:url('https://i.ibb.co/hRmxsSWr/Portada-Unstrung-Horizontal-2.png')">
           <div class="pc-thumb-shade"></div>
           <div class="pc-badge-wip"><span class="wip-dot"></span>In Development</div>
         </div>
@@ -349,7 +337,10 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
             <div class="pc-meta-item"><span class="pc-meta-label">Duration</span><span class="pc-meta-val">~8 months</span></div>
             <div class="pc-meta-item"><span class="pc-meta-label">Status</span><span class="pc-meta-val" style="color:var(--ice)">Alpha</span></div>
           </div>
-          <div class="pc-tags"><span class="pc-tag">Blueprint</span><span class="pc-tag">Puzzle Design</span><span class="pc-tag">Level Design</span></div>
+          <div class="pc-tags">
+            <span class="pc-tag">Blueprint</span><span class="pc-tag">Puzzle Design</span><span class="pc-tag">Level Design</span>
+            <span class="pc-tag pc-tag-steam">⬡ Steam</span>
+          </div>
         </div>
       </a>
 
@@ -371,7 +362,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
       </a>
 
       <a href="ToBeNamed.html" class="proj-card wip reveal" style="transition-delay:.3s">
-        <div class="pc-thumb" style="background-image: url('https://img.itch.zone/aW1nLzE5Mzc2Nzg1LnBuZw==/original/4fpv%2FL.png')">
+        <div class="pc-thumb" style="background-image:url('https://img.itch.zone/aW1nLzE5Mzc2Nzg1LnBuZw==/original/4fpv%2FL.png')">
           <div class="pc-thumb-shade"></div>
         </div>
         <div class="pc-body">
@@ -393,7 +384,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 
 <hr class="divider">
 
-<!-- EXPERIENCE -->
 <section id="experience">
   <div class="wrap">
     <div class="sec-header reveal">
@@ -419,7 +409,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 
 <hr class="divider">
 
-<!-- ABOUT -->
 <section id="about">
   <div class="wrap">
     <div class="sec-header reveal">
@@ -472,7 +461,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 
 <hr class="divider">
 
-<!-- CERTIFICATES -->
 <section id="certificates">
   <div class="wrap">
     <div class="sec-header reveal">
@@ -481,7 +469,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
       <div class="sec-rule"></div>
     </div>
     <div class="certs-grid">
-      <div class="cert-card reveal" data-img=https://i.ibb.co/chQNQ22g/GSA-Trinity-1.png data-caption="Trinity ISE III (C1) · 2026">
+      <div class="cert-card reveal" data-img="https://i.ibb.co/chQNQ22g/GSA-Trinity-1.png" data-caption="Trinity ISE III (C1) · 2026">
         <div class="cert-icon lang">
           <img src="https://i.ibb.co/pj9TKBh0/image.png" alt="Trinity" style="width:100%;height:100%;object-fit:contain;">
         </div>
@@ -492,7 +480,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
           <span class="cert-badge verified">Verified</span>
         </div>
       </div>
-      <div class="cert-card reveal" style="transition-delay:.08s" data-img=https://i.ibb.co/S4YrmznY/UC-ca756444-848d-41e7-808d-baa70dd9a5ab.jpg data-caption="C++ and Blueprints for Unreal Engine 5: From Beginner to Professional · Udemy · 2026">
+      <div class="cert-card reveal" style="transition-delay:.08s" data-img="https://i.ibb.co/S4YrmznY/UC-ca756444-848d-41e7-808d-baa70dd9a5ab.jpg" data-caption="C++ and Blueprints for Unreal Engine 5 · Udemy · 2026">
         <div class="cert-icon course">
           <img src="https://i.ibb.co/pCq8sdt/Udemy-Logo.png" alt="Udemy" style="width:100%;height:100%;object-fit:contain;border-radius:4px;">
         </div>
@@ -509,7 +497,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 
 <hr class="divider">
 
-<!-- CONTACT -->
 <section id="contact">
   <div class="wrap">
     <div class="sec-header reveal">
@@ -554,7 +541,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
   <p>Alís González · Game Designer · Madrid · 2026</p>
 </footer>
 
-<!-- CERT MODAL -->
 <div id="certModal">
   <div class="modal-inner">
     <button class="modal-close" id="modalClose">✕</button>
@@ -564,7 +550,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 </div>
 
 <script>
-/* Stars */
 (function(){
   const c=document.getElementById('stars'),ctx=c.getContext('2d');let st=[];
   function resize(){c.width=innerWidth;c.height=innerHeight}
@@ -573,7 +558,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
   resize();init();draw();window.addEventListener('resize',()=>{resize();init()});
 })();
 
-/* Loading doc */
 (function(){
   const lines=[
     {k:'#',v:' GDD — Luma v3.2',c:''},
@@ -601,14 +585,12 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
   });
 })();
 
-/* Loading dismiss */
 setTimeout(()=>{
   const l=document.getElementById('loading');
   l.style.transition='opacity .6s';l.style.opacity='0';
   setTimeout(()=>l.remove(),650);
 },2200);
 
-/* Animated counters */
 function animateCount(id,target,hasSuffix,duration){
   const el=document.getElementById(id);if(!el)return;
   const suffixEl=el.querySelector('span');
@@ -629,7 +611,6 @@ setTimeout(()=>{
   animateCount('stat-langs',2,false,700);
 },2400);
 
-/* Typewriter */
 (function(){
   const words=['Systems','Economy','Level','UI/UX'];
   let i=0,j=0,del=false;
@@ -643,7 +624,6 @@ setTimeout(()=>{
   type();
 })();
 
-/* Email copy */
 document.getElementById('emailCard').addEventListener('click',async()=>{
   try{
     await navigator.clipboard.writeText(document.getElementById('emailText').textContent);
@@ -653,38 +633,24 @@ document.getElementById('emailCard').addEventListener('click',async()=>{
   }catch(e){}
 });
 
-/* Mobile nav */
 document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('open'));
 function closeMob(){document.getElementById('mobileMenu').classList.remove('open')}
 
-/* Cert modal */
 (function(){
   const modal=document.getElementById('certModal');
   const img=document.getElementById('modalImg');
   const caption=document.getElementById('modalCaption');
   const closeBtn=document.getElementById('modalClose');
-
   document.querySelectorAll('.cert-card[data-img]').forEach(card=>{
     card.addEventListener('click',()=>{
-      const src=card.dataset.img;
-      const cap=card.dataset.caption||'';
-      if(!src||src.startsWith('YOUR_')){
-        alert('Reemplaza el placeholder con la URL de la imagen de tu certificado en el atributo data-img.');
-        return;
-      }
-      img.src=src;
-      img.alt=cap;
-      caption.textContent=cap;
+      img.src=card.dataset.img;
+      img.alt=card.dataset.caption||'';
+      caption.textContent=card.dataset.caption||'';
       modal.classList.add('open');
       document.body.style.overflow='hidden';
     });
   });
-
-  function closeModal(){
-    modal.classList.remove('open');
-    document.body.style.overflow='';
-    img.src='';
-  }
+  function closeModal(){modal.classList.remove('open');document.body.style.overflow='';img.src='';}
   closeBtn.addEventListener('click',closeModal);
   modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
