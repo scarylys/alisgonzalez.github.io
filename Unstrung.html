@@ -20,9 +20,10 @@ body{background:var(--ink);color:var(--text);font-family:'Inter',sans-serif;font
 a{text-decoration:none;color:inherit}
 ::selection{background:rgba(167,139,250,.25)}
 
-/* WIP banner */
 .wip-banner{position:fixed;top:0;left:0;right:0;z-index:300;background:rgba(79,195,247,.08);border-bottom:1px solid rgba(79,195,247,.25);padding:8px 28px;display:flex;align-items:center;justify-content:center;gap:10px;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ice)}
 .wip-dot{width:6px;height:6px;border-radius:50%;background:var(--ice);animation:pdot 1.4s infinite;flex-shrink:0}
+.wip-banner .sep{opacity:.35;margin:0 4px}
+.steam-inline{color:#4fc3f7;opacity:.8}
 @keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 
 nav{position:fixed;top:33px;width:100%;background:rgba(7,9,15,.88);border-bottom:1px solid var(--bord2);backdrop-filter:blur(16px);z-index:200}
@@ -48,6 +49,7 @@ nav{position:fixed;top:33px;width:100%;background:rgba(7,9,15,.88);border-bottom
 .htag-skill{background:var(--subtle);border:1px solid var(--bord);color:var(--gold)}
 .htag-tool{background:rgba(255,255,255,.04);border:1px solid var(--bord2);color:var(--muted)}
 .htag-wip{background:rgba(79,195,247,.1);border:1px solid rgba(79,195,247,.3);color:var(--ice)}
+.htag-steam{background:rgba(79,195,247,.07);border:1px solid rgba(79,195,247,.22);color:var(--ice);display:inline-flex;align-items:center;gap:5px}
 
 .content-wrap{max-width:1160px;margin:auto;padding:60px 28px 96px;display:grid;grid-template-columns:1fr 300px;gap:48px;align-items:start}
 @media(max-width:900px){.content-wrap{grid-template-columns:1fr}}
@@ -56,16 +58,17 @@ nav{position:fixed;top:33px;width:100%;background:rgba(7,9,15,.88);border-bottom
 .sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.5rem;color:#fff;letter-spacing:-.02em;margin-bottom:16px;display:flex;align-items:center;gap:14px}
 .sec-title::after{content:'';flex:1;height:1px;background:var(--bord2)}
 
-/* Progress bar for WIP */
 .wip-progress{background:var(--ink2);border:1px solid var(--bord2);border-radius:10px;padding:20px 24px;margin-bottom:0}
 .wip-progress-label{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ice);margin-bottom:12px;display:flex;justify-content:space-between}
 .wip-bar-track{height:4px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden}
-.wip-bar-fill{height:100%;width:75%;background:linear-gradient(90deg,rgba(79,195,247,.4),var(--ice));border-radius:4px;position:relative}
+.wip-bar-fill{height:100%;width:60%;background:linear-gradient(90deg,rgba(79,195,247,.4),var(--ice));border-radius:4px;position:relative}
 .wip-bar-fill::after{content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);width:8px;height:8px;border-radius:50%;background:var(--ice);box-shadow:0 0 8px var(--ice)}
-.wip-phases{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px}
-.wip-phase{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border-radius:var(--rad);border:1px solid var(--bord2);color:var(--muted);text-align:center}
+.wip-phases{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:16px}
+.wip-phase{font-family:'JetBrains Mono',monospace;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase;padding:6px 8px;border-radius:var(--rad);border:1px solid var(--bord2);color:var(--muted);text-align:center;line-height:1.3}
 .wip-phase.done{border-color:rgba(74,222,128,.25);background:rgba(74,222,128,.06);color:#4ade80}
 .wip-phase.active{border-color:rgba(79,195,247,.35);background:rgba(79,195,247,.08);color:var(--ice)}
+.wip-content-lock{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:12px;display:flex;align-items:center;gap:8px;padding-top:12px;border-top:1px solid var(--bord2)}
+.wip-content-lock::before{content:'🔒';font-size:.7rem}
 
 .carousel{position:relative;width:100%;aspect-ratio:16/9;border-radius:10px;overflow:hidden;border:1px solid var(--bord2)}
 .slide{position:absolute;inset:0;opacity:0;transition:.5s ease;background-size:cover;background-position:center}
@@ -88,9 +91,10 @@ nav{position:fixed;top:33px;width:100%;background:rgba(7,9,15,.88);border-bottom
 .dropdown summary::-webkit-details-marker{display:none}
 .dd-body{padding:0 20px 20px}
 .dd-desc{font-size:.83rem;color:var(--muted);line-height:1.8;margin-bottom:16px;padding:12px 14px;background:rgba(255,255,255,.03);border-radius:var(--rad);border-left:2px solid var(--bord)}
-.img-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-@media(max-width:560px){.img-grid{grid-template-columns:1fr 1fr}}
-.img-item{position:relative;aspect-ratio:1;border-radius:var(--rad);overflow:hidden;cursor:pointer;border:1px solid var(--bord2);transition:border-color .2s}
+.img-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+@media(max-width:700px){.img-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.img-grid{grid-template-columns:1fr}}
+.img-item{position:relative;aspect-ratio:16/9;border-radius:var(--rad);overflow:hidden;cursor:pointer;border:1px solid var(--bord2);transition:border-color .2s}
 .img-item:hover{border-color:var(--bord)}
 .img-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
 .img-item:hover img{transform:scale(1.04)}
@@ -125,6 +129,10 @@ aside{position:sticky;top:80px;align-self:start}
 .info-row:last-of-type{border-bottom:none}
 .info-label{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
 .info-val{font-size:.88rem;color:var(--text)}
+.steam-section{margin-top:20px;padding-top:20px;border-top:1px solid var(--bord2)}
+.steam-badge{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--rad);border:1px solid rgba(79,195,247,.25);background:rgba(79,195,247,.06)}
+.steam-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--ice);animation:pdot 1.4s infinite;flex-shrink:0}
+.steam-badge-text{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ice)}
 
 footer{text-align:center;padding:36px 24px 40px;border-top:1px solid var(--bord2)}
 footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
@@ -134,7 +142,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 
 <div class="wip-banner">
   <span class="wip-dot"></span>
-  This project is currently in development — Alpha stage, content locked
+  In Development · Alpha · Content locked
+  <span class="sep">·</span>
+  <span class="steam-inline">Coming soon on Steam</span>
   <span class="wip-dot"></span>
 </div>
 
@@ -158,6 +168,10 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
     <p class="hero-sub">2.5D Puzzle Platformer · Unreal Engine 5</p>
     <div class="hero-tags">
       <span class="htag htag-wip">● In Development</span>
+      <span class="htag htag-steam">
+        <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.52 3.73 10.17 8.84 11.54l3.19-6.56a3.5 3.5 0 01-1.03-.52 3.5 3.5 0 113.5-5.46l6.56-3.19C19.55 3.27 16.07 0 12 0z"/></svg>
+        Coming soon on Steam
+      </span>
       <span class="htag htag-tool">Unreal Engine 5</span>
       <span class="htag htag-skill">Puzzle Design</span>
       <span class="htag htag-skill">Level Design</span>
@@ -169,25 +183,25 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 <div class="content-wrap">
   <div class="main-col">
 
-    <!-- WIP STATUS -->
     <div id="status">
       <div class="sec-title">Development Status</div>
       <div class="wip-progress">
         <div class="wip-progress-label">
           <span>Alpha · Content locked</span>
-          <span style="color:var(--ice)">~75%</span>
+          <span style="color:var(--ice)">~60%</span>
         </div>
         <div class="wip-bar-track"><div class="wip-bar-fill"></div></div>
         <div class="wip-phases">
           <div class="wip-phase done">Concept</div>
-          <div class="wip-phase done">Prototype</div>
+          <div class="wip-phase done">First Playable</div>
           <div class="wip-phase active">Alpha</div>
+          <div class="wip-phase">Beta</div>
           <div class="wip-phase">Release</div>
         </div>
+        <div class="wip-content-lock">Content locked</div>
       </div>
     </div>
 
-    <!-- SCREENSHOTS -->
     <div>
       <div class="sec-title">Screenshots</div>
       <div class="carousel">
@@ -214,6 +228,16 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
           <summary>Puzzle & Level Design</summary>
           <div class="dd-body">
             <p class="dd-desc">Contributed to puzzle layout and spatial design. Levels are structured to introduce or remix one mechanic at a time, keeping the learning curve readable without hand-holding.</p>
+            <div class="img-grid">
+              <div class="img-item" onclick="openGallery(0,0)">
+                <img src="https://i.ibb.co/XZvVJfds/IMG-1794.jpg" alt="Puzzle Layout">
+                <div class="img-label">Puzzle — Layout</div>
+              </div>
+              <div class="img-item" onclick="openGallery(0,1)">
+                <img src="https://i.ibb.co/V0cchYvH/Whats-App-Image-2026-06-24-at-19-21-58.jpg" alt="In Game">
+                <div class="img-label">Blocking</div>
+              </div>
+            </div>
           </div>
         </details>
 
@@ -221,6 +245,20 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
           <summary>Blueprint Systems</summary>
           <div class="dd-body">
             <p class="dd-desc">Implemented Level Sequencer triggers for cutscene moments and developed Blueprint systems, including an elevator with object detection logic that halts movement when obstacles are present.</p>
+            <div class="img-grid">
+              <div class="img-item" onclick="openGallery(1,0)">
+                <img src="https://i.ibb.co/8g8RdvfD/image.png" alt="Elevator Blueprint">
+                <div class="img-label">Elevator — BP</div>
+              </div>
+              <div class="img-item" onclick="openGallery(1,1)">
+                <img src="https://i.ibb.co/8g5TBLLF/image.png" alt="Object Detection">
+                <div class="img-label">Object Detection</div>
+              </div>
+              <div class="img-item" onclick="openGallery(1,2)">
+                <img src="https://i.ibb.co/cKgmp102/image.png" alt="Level Sequencer">
+                <div class="img-label">Level Sequencer</div>
+              </div>
+            </div>
           </div>
         </details>
 
@@ -228,6 +266,20 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
           <summary>UI</summary>
           <div class="dd-body">
             <p class="dd-desc">Built the full UI layer, from wireframes and screen flow design through to functional implementation in Blueprints: main menu, settings, and options screens, covering widget architecture, event binding, and navigation logic.</p>
+            <div class="img-grid">
+              <div class="img-item" onclick="openGallery(2,0)">
+                <img src="https://i.ibb.co/v4wxPgYz/Whats-App-Image-2026-06-24-at-19-26-58.jpg" alt="Main Menu">
+                <div class="img-label">Main Menu</div>
+              </div>
+              <div class="img-item" onclick="openGallery(2,1)">
+                <img src="https://i.ibb.co/tT9XDSs1/Whats-App-Image-2026-06-24-at-19-27-41.jpg" alt="Settings Screen">
+                <div class="img-label">Settings</div>
+              </div>
+              <div class="img-item" onclick="openGallery(2,3)">
+                <img src="https://i.ibb.co/0p3FF398/Whats-App-Image-2026-06-24-at-19-29-02.jpg" alt="Widget Architecture">
+                <div class="img-label">Settings WBP</div>
+              </div>
+            </div>
           </div>
         </details>
 
@@ -245,7 +297,6 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
           <span class="tag-sk">Blueprint Systems</span>
           <span class="tag-sk">UI/UX</span>
           <span class="tag-sk">QA Documentation</span>
-          <span class="tag-sk">Save Systems</span>
         </div>
       </div>
       <div class="tag-group">
@@ -276,6 +327,12 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
           Alpha · In Development
         </span>
       </div>
+      <div class="steam-section">
+        <div class="steam-badge">
+          <span class="steam-badge-dot"></span>
+          <span class="steam-badge-text">Coming soon on Steam</span>
+        </div>
+      </div>
     </div>
   </aside>
 </div>
@@ -288,7 +345,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 </div>
 
 <footer>
-  <p>Alís González · Game Designer · Madrid · 2025</p>
+  <p>Alís González · Game Designer · Madrid · 2026</p>
 </footer>
 
 <script>
@@ -301,7 +358,11 @@ function prev(){idx=(idx-1+slides.length)%slides.length;updateCarousel()}
 function renderDots(){dotsEl.innerHTML='';slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===idx?' active':'');d.onclick=()=>{idx=i;updateCarousel()};dotsEl.appendChild(d)})}
 renderDots();
 
-const gallery=[];
+const gallery=[
+  ["YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE"],
+  ["YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE"],
+  ["YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE"]
+];
 let lbCat=0,lbImg=0;
 function openGallery(cat,img){lbCat=cat;lbImg=img;document.getElementById('lightbox').classList.add('open');updateLb()}
 function updateLb(){document.getElementById('lightboxImg').src=gallery[lbCat]?.[lbImg]||''}
