@@ -224,16 +224,16 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 
       <div style="display:flex;flex-direction:column;gap:10px">
 
-        <details class="dropdown">
+        <details class="dropdown" data-section="0">
           <summary>Puzzle & Level Design</summary>
           <div class="dd-body">
             <p class="dd-desc">Contributed to puzzle layout and spatial design. Levels are structured to introduce or remix one mechanic at a time, keeping the learning curve readable without hand-holding.</p>
             <div class="img-grid">
-              <div class="img-item" onclick="openGallery(0,0)">
+              <div class="img-item" onclick="openLightbox(0,0)">
                 <img src="https://i.ibb.co/XZvVJfds/IMG-1794.jpg" alt="Puzzle Layout">
                 <div class="img-label">Puzzle — Layout</div>
               </div>
-              <div class="img-item" onclick="openGallery(0,1)">
+              <div class="img-item" onclick="openLightbox(0,1)">
                 <img src="https://i.ibb.co/V0cchYvH/Whats-App-Image-2026-06-24-at-19-21-58.jpg" alt="In Game">
                 <div class="img-label">Blocking</div>
               </div>
@@ -241,20 +241,20 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
           </div>
         </details>
 
-        <details class="dropdown">
+        <details class="dropdown" data-section="1">
           <summary>Blueprint Systems</summary>
           <div class="dd-body">
             <p class="dd-desc">Implemented Level Sequencer triggers for cutscene moments and developed Blueprint systems, including an elevator with object detection logic that halts movement when obstacles are present.</p>
             <div class="img-grid">
-              <div class="img-item" onclick="openGallery(1,0)">
+              <div class="img-item" onclick="openLightbox(1,0)">
                 <img src="https://i.ibb.co/8g8RdvfD/image.png" alt="Elevator Blueprint">
                 <div class="img-label">Elevator — BP</div>
               </div>
-              <div class="img-item" onclick="openGallery(1,1)">
+              <div class="img-item" onclick="openLightbox(1,1)">
                 <img src="https://i.ibb.co/8g5TBLLF/image.png" alt="Object Detection">
                 <div class="img-label">Object Detection</div>
               </div>
-              <div class="img-item" onclick="openGallery(1,2)">
+              <div class="img-item" onclick="openLightbox(1,2)">
                 <img src="https://i.ibb.co/cKgmp102/image.png" alt="Level Sequencer">
                 <div class="img-label">Level Sequencer</div>
               </div>
@@ -262,20 +262,20 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
           </div>
         </details>
 
-        <details class="dropdown">
+        <details class="dropdown" data-section="2">
           <summary>UI</summary>
           <div class="dd-body">
             <p class="dd-desc">Built the full UI layer, from wireframes and screen flow design through to functional implementation in Blueprints: main menu, settings, and options screens, covering widget architecture, event binding, and navigation logic.</p>
             <div class="img-grid">
-              <div class="img-item" onclick="openGallery(2,0)">
+              <div class="img-item" onclick="openLightbox(2,0)">
                 <img src="https://i.ibb.co/v4wxPgYz/Whats-App-Image-2026-06-24-at-19-26-58.jpg" alt="Main Menu">
                 <div class="img-label">Main Menu</div>
               </div>
-              <div class="img-item" onclick="openGallery(2,1)">
+              <div class="img-item" onclick="openLightbox(2,1)">
                 <img src="https://i.ibb.co/tT9XDSs1/Whats-App-Image-2026-06-24-at-19-27-41.jpg" alt="Settings Screen">
                 <div class="img-label">Settings</div>
               </div>
-              <div class="img-item" onclick="openGallery(2,3)">
+              <div class="img-item" onclick="openLightbox(2,2)">
                 <img src="https://i.ibb.co/0p3FF398/Whats-App-Image-2026-06-24-at-19-29-02.jpg" alt="Widget Architecture">
                 <div class="img-label">Settings WBP</div>
               </div>
@@ -341,7 +341,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
   <button class="lb-btn" id="lbPrev" onclick="prevImg()">‹</button>
   <img id="lightboxImg" src="" alt="">
   <button class="lb-btn" id="lbNext" onclick="nextImg()">›</button>
-  <button class="lb-btn" id="lbClose" onclick="closeGallery()">✕</button>
+  <button class="lb-btn" id="lbClose" onclick="closeLightbox()">✕</button>
 </div>
 
 <footer>
@@ -349,28 +349,71 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 </footer>
 
 <script>
-let idx=0;
-const slides=document.querySelectorAll('.slide');
-const dotsEl=document.getElementById('dots');
-function updateCarousel(){slides.forEach((s,i)=>s.classList.toggle('active',i===idx));renderDots()}
-function next(){idx=(idx+1)%slides.length;updateCarousel()}
-function prev(){idx=(idx-1+slides.length)%slides.length;updateCarousel()}
-function renderDots(){dotsEl.innerHTML='';slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===idx?' active':'');d.onclick=()=>{idx=i;updateCarousel()};dotsEl.appendChild(d)})}
+// ── Carousel ──────────────────────────────────────────────
+let idx = 0;
+const slides = document.querySelectorAll('.slide');
+const dotsEl = document.getElementById('dots');
+
+function updateCarousel() {
+  slides.forEach((s, i) => s.classList.toggle('active', i === idx));
+  renderDots();
+}
+function next() { idx = (idx + 1) % slides.length; updateCarousel(); }
+function prev() { idx = (idx - 1 + slides.length) % slides.length; updateCarousel(); }
+function renderDots() {
+  dotsEl.innerHTML = '';
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === idx ? ' active' : '');
+    d.onclick = () => { idx = i; updateCarousel(); };
+    dotsEl.appendChild(d);
+  });
+}
 renderDots();
 
-const gallery=[
-  ["YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE"],
-  ["YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE"],
-  ["YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE","YOUR_IMAGE_URL_HERE"]
-];
-let lbCat=0,lbImg=0;
-function openGallery(cat,img){lbCat=cat;lbImg=img;document.getElementById('lightbox').classList.add('open');updateLb()}
-function updateLb(){document.getElementById('lightboxImg').src=gallery[lbCat]?.[lbImg]||''}
-function nextImg(){lbImg=(lbImg+1)%(gallery[lbCat]?.length||1);updateLb()}
-function prevImg(){lbImg=(lbImg-1+(gallery[lbCat]?.length||1))%(gallery[lbCat]?.length||1);updateLb()}
-function closeGallery(){document.getElementById('lightbox').classList.remove('open')}
-document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeGallery()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGallery();if(e.key==='ArrowRight')nextImg();if(e.key==='ArrowLeft')prevImg()});
+// ── Lightbox ──────────────────────────────────────────────
+// Builds the gallery dynamically from the images already in the DOM.
+// Each details[data-section] maps to one array of image srcs.
+function buildGallery() {
+  return [...document.querySelectorAll('.dropdown')].map(section =>
+    [...section.querySelectorAll('.img-item img')].map(img => img.src)
+  );
+}
+
+let lbCat = 0, lbImg = 0;
+
+function openLightbox(cat, img) {
+  lbCat = cat;
+  lbImg = img;
+  document.getElementById('lightbox').classList.add('open');
+  updateLb();
+}
+function updateLb() {
+  const gallery = buildGallery();
+  document.getElementById('lightboxImg').src = gallery[lbCat]?.[lbImg] || '';
+}
+function nextImg() {
+  const gallery = buildGallery();
+  lbImg = (lbImg + 1) % (gallery[lbCat]?.length || 1);
+  updateLb();
+}
+function prevImg() {
+  const gallery = buildGallery();
+  lbImg = (lbImg - 1 + (gallery[lbCat]?.length || 1)) % (gallery[lbCat]?.length || 1);
+  updateLb();
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+}
+
+document.getElementById('lightbox').addEventListener('click', e => {
+  if (e.target === document.getElementById('lightbox')) closeLightbox();
+});
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'ArrowRight') nextImg();
+  if (e.key === 'ArrowLeft') prevImg();
+});
 </script>
 </body>
 </html>
