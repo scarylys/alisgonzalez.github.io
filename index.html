@@ -138,14 +138,99 @@ section{position:relative;z-index:1}
 .pc-tag{font-family:'JetBrains Mono',monospace;font-size:.6rem;padding:3px 10px;border-radius:20px;background:rgba(255,255,255,.04);border:1px solid var(--bord2);color:var(--muted);letter-spacing:.05em}
 .pc-tag-steam{background:rgba(79,195,247,.07);border-color:rgba(79,195,247,.22);color:#4fc3f7}
 
-.exp-row{display:grid;grid-template-columns:140px 1fr;padding:36px 0;border-top:1px solid var(--bord2);gap:40px}
-@media(max-width:640px){.exp-row{grid-template-columns:1fr;gap:12px}}
+/* ── Experience expandable rows ── */
+.exp-row{
+  border-top:1px solid var(--bord2);
+  cursor:pointer;
+  transition:background .2s;
+  border-radius:0 0 var(--rad) var(--rad);
+}
+.exp-row:hover{background:rgba(167,139,250,.04)}
+.exp-row-header{
+  display:grid;
+  grid-template-columns:140px 1fr auto;
+  padding:28px 20px;
+  gap:40px;
+  align-items:center;
+}
+@media(max-width:640px){
+  .exp-row-header{grid-template-columns:1fr auto;gap:12px}
+  .exp-row-header .exp-period-col{grid-column:1/-1}
+}
 .exp-period{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--gold);letter-spacing:.08em}
 .exp-place{font-family:'JetBrains Mono',monospace;font-size:.63rem;color:var(--muted);margin-top:4px}
-.exp-role-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;color:#fff;margin-bottom:10px}
-.exp-desc{font-size:.87rem;color:var(--muted);line-height:1.8;margin-bottom:14px}
+.exp-role-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.15rem;color:#fff;margin-bottom:4px}
+.exp-summary{font-size:.82rem;color:var(--muted)}
+.exp-chevron{
+  color:var(--muted);
+  font-size:.75rem;
+  font-family:'JetBrains Mono',monospace;
+  transition:transform .3s,color .2s;
+  flex-shrink:0;
+  display:flex;
+  align-items:center;
+  gap:6px;
+  white-space:nowrap;
+}
+.exp-row.open .exp-chevron{transform:rotate(180deg);color:var(--gold)}
+.exp-row-body{
+  display:grid;
+  grid-template-rows:0fr;
+  transition:grid-template-rows .35s ease;
+  padding:0 20px;
+}
+.exp-row.open .exp-row-body{grid-template-rows:1fr}
+.exp-row-body-inner{overflow:hidden}
+.exp-body-content{
+  padding:0 0 28px 180px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+@media(max-width:640px){.exp-body-content{padding:0 0 24px 0}}
+.exp-desc{font-size:.87rem;color:var(--muted);line-height:1.8}
 .exp-tags{display:flex;flex-wrap:wrap;gap:7px}
 .exp-tag{font-family:'JetBrains Mono',monospace;font-size:.63rem;padding:4px 11px;border-radius:20px;background:rgba(196,123,90,.1);border:1px solid rgba(196,123,90,.25);color:#c49a82;letter-spacing:.06em}
+.exp-collab{
+  display:inline-flex;align-items:center;gap:6px;
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  color:var(--muted);letter-spacing:.06em;
+  padding:4px 12px;border-radius:20px;
+  border:1px solid var(--bord2);
+  background:rgba(79,195,247,.05);
+  width:fit-content;
+}
+.exp-collab span{color:var(--ice)}
+.exp-pdf-wrap{
+  width:100%;
+  border:1px solid var(--bord2);
+  border-radius:var(--rad);
+  overflow:hidden;
+  background:var(--ink3);
+}
+.exp-pdf-header{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 16px;
+  border-bottom:1px solid var(--bord2);
+  background:var(--ink2);
+}
+.exp-pdf-label{
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;
+  letter-spacing:.12em;text-transform:uppercase;color:var(--muted);
+  display:flex;align-items:center;gap:8px;
+}
+.exp-pdf-label svg{color:var(--gold)}
+.exp-pdf-link{
+  font-family:'JetBrains Mono',monospace;font-size:.6rem;
+  letter-spacing:.1em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:5px;
+  transition:opacity .2s;
+}
+.exp-pdf-link:hover{opacity:.7}
+.exp-pdf-wrap iframe{
+  width:100%;height:520px;border:none;display:block;
+}
+@media(max-width:640px){.exp-pdf-wrap iframe{height:360px}}
 
 .about-grid{display:grid;grid-template-columns:260px 1fr;gap:64px;align-items:start}
 @media(max-width:780px){.about-grid{grid-template-columns:1fr}}
@@ -391,19 +476,55 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
       <span class="sec-title">Work history</span>
       <div class="sec-rule"></div>
     </div>
-    <div class="exp-row reveal">
-      <div>
-        <div class="exp-period">January – March 2025</div>
-        <div class="exp-place">Concello de Narón · A Coruña, ES</div>
+
+    <!-- Expandable experience row -->
+    <div class="exp-row reveal" id="expOlis">
+      <div class="exp-row-header">
+        <div class="exp-period-col">
+          <div class="exp-period">January – March 2025</div>
+          <div class="exp-place">Concello de Narón · in collab. with UDC · A Coruña, ES</div>
+        </div>
+        <div>
+          <div class="exp-role-title">Game Design Intern</div>
+          <div class="exp-summary">Serious game for civic education — full design cycle, solo.</div>
+        </div>
+        <div class="exp-chevron">
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><polyline points="6,9 12,15 18,9"/></svg>
+        </div>
       </div>
-      <div>
-        <div class="exp-role-title">Game Design Intern</div>
-        <p class="exp-desc">Designed and shipped <em>Olis Aventura</em>, a serious game commissioned by the local council for civic education targeting primary-school children. Led the full design cycle: concept, mechanics documentation, GDD. Translated educational goals into play loops with no prior brief, the design direction was set entirely by the team.</p>
-        <div class="exp-tags">
-          <span class="exp-tag">Serious Game</span><span class="exp-tag">Unreal Engine 5</span><span class="exp-tag">GDD</span><span class="exp-tag">Solo Design</span><span class="exp-tag">Jira</span>
+      <div class="exp-row-body">
+        <div class="exp-row-body-inner">
+          <div class="exp-body-content">
+            <div class="exp-collab">
+              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+              Commission: <span>Concello de Narón</span> · Academic framework: <span>UDC</span>
+            </div>
+            <p class="exp-desc">Designed <em>Olis Aventura</em>, a serious game commissioned by the local council for civic education targeting primary-school children. Led the full design cycle: concept, mechanics documentation, GDD. Translated educational goals into play loops with no prior brief — the design direction was set entirely by the team.</p>
+            <div class="exp-tags">
+              <span class="exp-tag">Serious Game</span><span class="exp-tag">Unreal Engine 5</span><span class="exp-tag">GDD</span><span class="exp-tag">Solo Design</span><span class="exp-tag">Jira</span>
+            </div>
+            <div class="exp-pdf-wrap">
+              <div class="exp-pdf-header">
+                <span class="exp-pdf-label">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                  GDD — Olis Aventura
+                </span>
+                <a href="PLACEHOLDER_GDD_URL.pdf" target="_blank" class="exp-pdf-link">
+                  <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15,3 21,3 21,9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                  Open
+                </a>
+              </div>
+              <iframe
+                src="PLACEHOLDER_GDD_URL.pdf"
+                title="GDD — Olis Aventura"
+                loading="lazy">
+              </iframe>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -635,6 +756,13 @@ document.getElementById('emailCard').addEventListener('click',async()=>{
 
 document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('open'));
 function closeMob(){document.getElementById('mobileMenu').classList.remove('open')}
+
+// Expandable experience rows
+document.querySelectorAll('.exp-row').forEach(row=>{
+  row.addEventListener('click',()=>{
+    row.classList.toggle('open');
+  });
+});
 
 (function(){
   const modal=document.getElementById('certModal');
