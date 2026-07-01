@@ -136,6 +136,18 @@ aside{position:sticky;top:80px;align-self:start}
 
 footer{text-align:center;padding:36px 24px 40px;border-top:1px solid var(--bord2)}
 footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
+
+/* --- PDF viewer block (added) --- */
+.pdf-viewer-wrap{margin-top:16px;border-radius:var(--rad);overflow:hidden;border:1px solid var(--bord2);position:relative}
+.pdf-viewer-label{display:flex;align-items:center;justify-content:space-between;padding:10px 14px;background:rgba(255,255,255,.03);border-bottom:1px solid var(--bord2)}
+.pdf-viewer-label span{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.pdf-expand-btn{font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);background:none;border:1px solid var(--bord);border-radius:var(--rad);padding:4px 10px;cursor:pointer;transition:background .2s}
+.pdf-expand-btn:hover{background:var(--subtle)}
+.pdf-embed-frame{width:100%;height:520px;border:none;display:block;background:#0c0f18}
+
+#pdfLightbox{position:fixed;inset:0;background:rgba(5,8,18,.95);display:none;align-items:center;justify-content:center;z-index:500;backdrop-filter:blur(8px)}
+#pdfLightbox.open{display:flex}
+#pdfLightboxFrame{width:90%;height:90vh;border:none;border-radius:8px;border:1px solid var(--bord)}
 </style>
 </head>
 <body>
@@ -205,7 +217,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
     <div>
       <div class="sec-title">Screenshots</div>
       <div class="carousel">
-        <div class="slide active" style="background-image:url('https://i.ibb.co/hRmxsSWr/Portada-Unstrung-Horizontal-2.png')"></div>
+        <div class="slide active" style="background-image:url('https://i.ibb.co/7JJKQbRv/image.png')"></div>
+        <div class="slide" style="background-image:url('https://i.ibb.co/99SVCvk4/Screenshot-2026-06-26-152026.png')"></div>
+        <div class="slide" style="background-image:url('https://i.ibb.co/hRmxsSWr/Portada-Unstrung-Horizontal-2.png')"></div>
         <button class="arrow arrow-left" onclick="prev()">‹</button>
         <button class="arrow arrow-right" onclick="next()">›</button>
         <div class="dots" id="dots"></div>
@@ -279,6 +293,26 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
                 <img src="https://i.ibb.co/0p3FF398/Whats-App-Image-2026-06-24-at-19-29-02.jpg" alt="Widget Architecture">
                 <div class="img-label">Settings WBP</div>
               </div>
+              <div class="img-item" onclick="openLightbox(2,3)">
+                <img src="https://i.ibb.co/pv14bqTz/Ilustracio-n-sin-ti-tulo-2.png" alt="Wireframe 1">
+                <div class="img-label">Wireframe — Slot Selection</div>
+              </div>
+              <div class="img-item" onclick="openLightbox(2,4)">
+                <img src="https://i.ibb.co/r9p264Z/Ilustracio-n-sin-ti-tulo-5.png" alt="Wireframe 2">
+                <div class="img-label">Wireframe — Controller</div>
+              </div>
+            </div>
+
+            <div class="pdf-viewer-wrap">
+              <div class="pdf-viewer-label">
+                <span>Screen Flow — flujoPantallas.pdf</span>
+                <button class="pdf-expand-btn" onclick="openPdfLightbox()">Expand</button>
+              </div>
+              <iframe
+                class="pdf-embed-frame"
+                src="https://raw.githubusercontent.com/USERNAME/REPO/main/assets/flujoPantallas.pdf#toolbar=0&navpanes=0"
+                title="Screen Flow PDF">
+              </iframe>
             </div>
           </div>
         </details>
@@ -342,6 +376,11 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
   <img id="lightboxImg" src="" alt="">
   <button class="lb-btn" id="lbNext" onclick="nextImg()">›</button>
   <button class="lb-btn" id="lbClose" onclick="closeLightbox()">✕</button>
+</div>
+
+<div id="pdfLightbox">
+  <button class="lb-btn" id="pdfClose" style="top:20px;right:20px" onclick="closePdfLightbox()">✕</button>
+  <iframe id="pdfLightboxFrame" src="" title="Screen Flow PDF Fullscreen"></iframe>
 </div>
 
 <footer>
@@ -410,9 +449,23 @@ document.getElementById('lightbox').addEventListener('click', e => {
   if (e.target === document.getElementById('lightbox')) closeLightbox();
 });
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') closeLightbox();
+  if (e.key === 'Escape') { closeLightbox(); closePdfLightbox(); }
   if (e.key === 'ArrowRight') nextImg();
   if (e.key === 'ArrowLeft') prevImg();
+});
+
+// ── PDF lightbox (fullscreen view of the flow PDF) ─────────
+function openPdfLightbox() {
+  const src = document.querySelector('.pdf-embed-frame').src;
+  document.getElementById('pdfLightboxFrame').src = src;
+  document.getElementById('pdfLightbox').classList.add('open');
+}
+function closePdfLightbox() {
+  document.getElementById('pdfLightbox').classList.remove('open');
+  document.getElementById('pdfLightboxFrame').src = '';
+}
+document.getElementById('pdfLightbox').addEventListener('click', e => {
+  if (e.target === document.getElementById('pdfLightbox')) closePdfLightbox();
 });
 </script>
 </body>
