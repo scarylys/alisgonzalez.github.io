@@ -113,7 +113,7 @@ nav{position:fixed;top:0;width:100%;background:rgba(7,9,15,.88);border-bottom:1p
 @media(max-width:640px){.hero-stats{flex-direction:column;width:100%;max-width:320px}}
 .hs-stat{padding:20px 36px;display:flex;flex-direction:column;align-items:center;gap:5px;border-right:1px solid var(--bord2)}
 .hs-stat:last-child{border-right:none}
-.hs-num{font-family:'Syne',sans-serif;font-weight:800;font-size:2.4rem;line-height:1;color:#fff;letter-spacing:-.03em}
+.hs-num{font-family:'Syne',sans-serif;font-weight:800;font-size:2.4rem;line-height:1;color:#fff;letter-spacing:-.03em;min-width:2.6ch;text-align:center}
 .hs-num span{color:var(--gold)}
 .hs-label{font-family:'JetBrains Mono',monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
 @media(max-width:640px){.hs-stat{border-right:none;border-bottom:1px solid var(--bord2);padding:16px 24px;flex-direction:row;justify-content:space-between}.hs-stat:last-child{border-bottom:none}}
@@ -877,7 +877,7 @@ function animateCount(id,target,hasSuffix,duration){
   function step(now){
     const p=Math.min((now-start)/duration,1);
     const val=Math.round(p*target);
-    if(suffixEl){el.childNodes[0].nodeValue=val;el.appendChild(suffixEl)}
+    if(suffixEl){el.childNodes[0].nodeValue=val}
     else el.textContent=val;
     if(p<1)requestAnimationFrame(step);
   }
