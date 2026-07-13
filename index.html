@@ -279,6 +279,17 @@ section{position:relative;z-index:1}
   width:100%;height:520px;border:none;display:block;
 }
 @media(max-width:640px){.exp-pdf-wrap iframe{height:360px}}
+.exp-pdf-preview{
+  height:520px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;
+  color:var(--muted);font-family:'JetBrains Mono',monospace;font-size:.7rem;letter-spacing:.06em;text-align:center;padding:20px;
+}
+@media(max-width:640px){.exp-pdf-preview{height:360px}}
+.exp-pdf-load-btn{
+  font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;
+  padding:8px 16px;border-radius:20px;background:var(--subtle);border:1px solid var(--bord);color:var(--gold);
+  cursor:pointer;transition:background .2s;
+}
+.exp-pdf-load-btn:hover{background:rgba(167,139,250,.2)}
 
 .about-grid{display:grid;grid-template-columns:260px 1fr;gap:64px;align-items:start}
 @media(max-width:780px){.about-grid{grid-template-columns:1fr}}
@@ -589,11 +600,11 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
                   Open
                 </a>
               </div>
-              <iframe
-                src="https://cdn.jsdelivr.net/gh/scarylys/alisgonzalez.github.io@main/Copia%20de%20PGD_gdd_pasi%C3%B1osSonoros_v01.docx%20(2).pdf#toolbar=0&navpanes=0"
-                title="GDD — Olis Aventura"
-                loading="lazy">
-              </iframe>
+              <div class="exp-pdf-preview" id="olisPdfPreview" data-pdf-src="https://cdn.jsdelivr.net/gh/scarylys/alisgonzalez.github.io@main/Copia%20de%20PGD_gdd_pasi%C3%B1osSonoros_v01.docx%20(2).pdf#toolbar=0&navpanes=0">
+                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+                <span>GDD — Olis Aventura · ~9 MB</span>
+                <button type="button" class="exp-pdf-load-btn" onclick="loadOlisPdfPreview()">Load preview</button>
+              </div>
             </div>
           </div>
         </div>
@@ -902,6 +913,12 @@ document.getElementById('emailCard').addEventListener('click',async()=>{
 });
 
 document.getElementById('navToggle').addEventListener('click',()=>document.getElementById('mobileMenu').classList.toggle('open'));
+
+function loadOlisPdfPreview(){
+  const el=document.getElementById('olisPdfPreview');
+  const src=el.dataset.pdfSrc;
+  el.outerHTML='<iframe src="'+src+'" title="GDD — Olis Aventura"></iframe>';
+}
 
 document.getElementById('themeToggle').addEventListener('click',()=>{
   const root=document.documentElement;
