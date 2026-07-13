@@ -5,6 +5,37 @@
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Game Design Portfolio - Alís González</title>
 <meta name="description" content="Portfolio of Alís González, game designer based in Madrid specializing in level design and systems design. Projects built in Unreal Engine 5, Unity, and Godot, including Luma and Unstrung.">
+<link rel="canonical" href="https://alisgonzalez.dev/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Game Design Portfolio - Alís González">
+<meta property="og:description" content="Portfolio of Alís González, game designer based in Madrid specializing in level design and systems design. Projects built in Unreal Engine 5, Unity, and Godot, including Luma and Unstrung.">
+<meta property="og:image" content="https://alisgonzalez.dev/img/hero-bg.png">
+<meta property="og:url" content="https://alisgonzalez.dev/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Game Design Portfolio - Alís González">
+<meta name="twitter:description" content="Portfolio of Alís González, game designer based in Madrid specializing in level design and systems design. Projects built in Unreal Engine 5, Unity, and Godot, including Luma and Unstrung.">
+<meta name="twitter:image" content="https://alisgonzalez.dev/img/hero-bg.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Alís González",
+  "jobTitle": "Game Designer",
+  "url": "https://alisgonzalez.dev/",
+  "image": "https://alisgonzalez.dev/img/profile.jpg",
+  "email": "mailto:alisgsaavedra@gmail.com",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Madrid",
+    "addressCountry": "ES"
+  },
+  "sameAs": [
+    "https://www.linkedin.com/in/alisgs/",
+    "https://scarylys.itch.io/"
+  ],
+  "knowsAbout": ["Game Design", "Level Design", "Systems Design", "Economy Design", "Unreal Engine 5", "Unity", "Godot"]
+}
+</script>
 <link rel="icon" type="image/png" href="agLogo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -54,7 +85,7 @@ nav{position:fixed;top:0;width:100%;background:rgba(7,9,15,.88);border-bottom:1p
 @media(max-width:860px){.nav-links{display:none}.nav-right .nav-cv{display:none}.nav-toggle{display:flex}}
 
 #home{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background-image:url('https://i.ibb.co/4Zh536tR/Dise-o-sin-t-tulo-3.png');background-size:cover;background-position:center;filter:brightness(.18) saturate(1.1)}
+.hero-bg{position:absolute;inset:0;background-image:url('img/hero-bg.png');background-size:cover;background-position:center;filter:brightness(.18) saturate(1.1)}
 .hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%,transparent 0%,rgba(7,9,15,.7) 100%),linear-gradient(to bottom,rgba(7,9,15,.5) 0%,transparent 30%,rgba(7,9,15,.98) 100%)}
 .hero-inner{position:relative;max-width:1160px;margin:auto;width:100%;padding:0 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center}
 .hero-tag{font-family:'JetBrains Mono',monospace;font-size:.67rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px}
@@ -304,8 +335,31 @@ section{position:relative;z-index:1}
 .modal-close:hover{color:var(--gold);border-color:var(--bord)}
 .modal-caption{font-family:'JetBrains Mono',monospace;font-size:.68rem;color:var(--muted);letter-spacing:.1em;text-align:center}
 
-footer{text-align:center;padding:36px 24px 40px;border-top:1px solid var(--bord2);position:relative;z-index:1}
-footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
+footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid var(--bord2)}
+.footer-top{max-width:1160px;margin:auto;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--bord2)}
+.footer-top span{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.footer-top a{color:var(--muted);transition:color .2s}
+.footer-top a:hover{color:var(--gold)}
+.footer-grid{max-width:1160px;margin:auto;padding:56px 28px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;row-gap:32px}}
+@media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
+.footer-heading{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.footer-bio{font-size:.82rem;color:var(--muted);line-height:1.8;margin-bottom:12px;max-width:320px}
+.footer-links{display:flex;flex-direction:column;gap:11px}
+.footer-links a{font-size:.83rem;color:var(--muted);transition:color .2s;width:fit-content}
+.footer-links a:hover{color:var(--gold)}
+.footer-social a{display:flex;align-items:center;gap:10px}
+.footer-social a svg{flex-shrink:0;color:var(--muted);transition:color .2s}
+.footer-social a:hover svg{color:var(--gold)}
+.footer-bottom{max-width:1160px;margin:auto;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--bord2)}
+.footer-bottom-links{display:flex;flex-wrap:wrap;gap:6px;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.footer-bottom-links a{color:var(--muted);transition:color .2s;padding:2px 4px}
+.footer-bottom-links a:hover{color:var(--gold)}
+.footer-bottom-links .sep{opacity:.4}
+.footer-icons{display:flex;gap:8px}
+.footer-icons a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--bord2);color:var(--muted);transition:color .2s,border-color .2s}
+.footer-icons a:hover{color:var(--gold);border-color:var(--bord)}
+.footer-copy{text-align:center;padding:0 24px 32px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
 </style>
 </head>
 <body>
@@ -387,7 +441,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
     </div>
 
     <a href="Luma.html" class="proj-featured reveal">
-      <div class="pf-thumb" style="background-image:url('https://i.ibb.co/gx7mzZ5/image-5.png')">
+      <div class="pf-thumb" style="background-image:url('img/luma-thumb.png')">
           <div class="pf-thumb-shade"></div>
           <div style="position:absolute;top:12px;right:12px;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(79,195,247,.12);border:1px solid rgba(79,195,247,.3);color:#4fc3f7;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#4fc3f7;animation:pdot 1.4s infinite;flex-shrink:0;display:inline-block"></span>Coming soon on Steam</div>
         </div>
@@ -411,7 +465,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
     <div class="proj-grid" style="margin-top:20px">
 
       <a href="Unstrung.html" class="proj-card wip reveal" style="transition-delay:.1s">
-        <div class="pc-thumb" style="background-image:url('https://i.ibb.co/hRmxsSWr/Portada-Unstrung-Horizontal-2.png')">
+        <div class="pc-thumb" style="background-image:url('img/unstrung-thumb.png')">
           <div class="pc-thumb-shade"></div>
           <div class="pc-badge-wip"><span class="wip-dot"></span>In Development</div>
         </div>
@@ -432,7 +486,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
       </a>
 
       <a href="Lua.html" class="proj-card done reveal" style="transition-delay:.2s">
-        <div class="pc-thumb" style="background-image:url('https://i.ibb.co/FbLvBs3s/image.png')">
+        <div class="pc-thumb" style="background-image:url('img/lua-thumb.png')">
           <div class="pc-thumb-shade"></div>
         </div>
         <div class="pc-body">
@@ -449,7 +503,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
       </a>
 
       <a href="ToBeNamed.html" class="proj-card wip reveal" style="transition-delay:.3s">
-        <div class="pc-thumb" style="background-image:url('https://img.itch.zone/aW1nLzE5Mzc2Nzg1LnBuZw==/original/4fpv%2FL.png')">
+        <div class="pc-thumb" style="background-image:url('img/tbn-thumb.png')">
           <div class="pc-thumb-shade"></div>
         </div>
         <div class="pc-body">
@@ -542,7 +596,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
     <div class="about-grid">
       <div class="reveal" style="transition-delay:.1s">
         <div class="profile-card">
-          <img src="https://i.ibb.co/jZxxhSHK/image0.jpg" alt="Alís González">
+          <img src="img/profile.jpg" alt="Alís González">
           <div class="profile-card-shade"></div>
           <div class="profile-card-foot">
             <div class="profile-links">
@@ -592,9 +646,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
       <div class="sec-rule"></div>
     </div>
     <div class="certs-grid">
-      <div class="cert-card reveal" data-img="https://i.ibb.co/chQNQ22g/GSA-Trinity-1.png" data-caption="Trinity ISE III (C1) · 2026">
+      <div class="cert-card reveal" data-img="img/cert-trinity.png" data-caption="Trinity ISE III (C1) · 2026">
         <div class="cert-icon lang">
-          <img src="https://i.ibb.co/pj9TKBh0/image.png" alt="Trinity" style="width:100%;height:100%;object-fit:contain;">
+          <img src="img/icon-trinity.png" alt="Trinity" style="width:100%;height:100%;object-fit:contain;">
         </div>
         <div class="cert-info">
           <div class="cert-title">Trinity ISE III — Integrated Skills in English (C1)</div>
@@ -603,9 +657,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
           <span class="cert-badge verified">Verified</span>
         </div>
       </div>
-      <div class="cert-card reveal" style="transition-delay:.08s" data-img="https://i.ibb.co/S4YrmznY/UC-ca756444-848d-41e7-808d-baa70dd9a5ab.jpg" data-caption="C++ and Blueprints for Unreal Engine 5 · Udemy · 2026">
+      <div class="cert-card reveal" style="transition-delay:.08s" data-img="img/cert-udemy.jpg" data-caption="C++ and Blueprints for Unreal Engine 5 · Udemy · 2026">
         <div class="cert-icon course">
-          <img src="https://i.ibb.co/pCq8sdt/Udemy-Logo.png" alt="Udemy" style="width:100%;height:100%;object-fit:contain;border-radius:4px;">
+          <img src="img/icon-udemy.png" alt="Udemy" style="width:100%;height:100%;object-fit:contain;border-radius:4px;">
         </div>
         <div class="cert-info">
           <div class="cert-title">C++ and Blueprints for Unreal Engine 5: From Beginner to Professional</div>
@@ -661,7 +715,79 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 </section>
 
 <footer>
-  <p>Alís González · Game Designer · Madrid · 2026</p>
+  <div class="footer-top">
+    <span>Madrid, Spain</span>
+    <a href="mailto:alisgsaavedra@gmail.com">alisgsaavedra@gmail.com</a>
+  </div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-heading">About Me</div>
+      <p class="footer-bio">Game designer specialized in level and systems design, working across Unreal Engine, Unity, and Godot. Background in Animation and Economics, plus a Master's in Game Design at U-tad.</p>
+      <p class="footer-bio">Looking for game design roles and internships across Europe. Open to remote work and relocation.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Projects</div>
+      <div class="footer-links">
+        <a href="Luma.html">Luma</a>
+        <a href="Unstrung.html">Unstrung</a>
+        <a href="Lua.html">Lúa</a>
+        <a href="ToBeNamed.html">To Be Named</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Site</div>
+      <div class="footer-links">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
+        <a href="#certificates">Certificates</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Social Networks</div>
+      <div class="footer-links footer-social">
+        <a href="https://www.linkedin.com/in/alisgs/" target="_blank">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://scarylys.itch.io/" target="_blank">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="12" rx="3"/><path d="M2 8l2-5h16l2 5"/><line x1="8" y1="13" x2="8" y2="16"/><line x1="6.5" y1="14.5" x2="9.5" y2="14.5"/><circle cx="16" cy="14" r="1"/><circle cx="18.5" cy="16" r="1"/></svg>
+          Itch.io
+        </a>
+        <a href="mailto:alisgsaavedra@gmail.com">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          Email
+        </a>
+        <a href="https://raw.githubusercontent.com/scarylys/alisgonzalez.github.io/main/GSA_CV.pdf" download="Alis_Gonzalez_CV.pdf">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-links">
+      <a href="#home">Home</a><span class="sep">·</span>
+      <a href="#projects">Projects</a><span class="sep">·</span>
+      <a href="#experience">Experience</a><span class="sep">·</span>
+      <a href="#about">About</a><span class="sep">·</span>
+      <a href="#certificates">Certificates</a><span class="sep">·</span>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="footer-icons">
+      <a href="mailto:alisgsaavedra@gmail.com" title="Email" aria-label="Email">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/alisgs/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://scarylys.itch.io/" target="_blank" title="Itch.io" aria-label="Itch.io">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="12" rx="3"/><path d="M2 8l2-5h16l2 5"/><line x1="8" y1="13" x2="8" y2="16"/><line x1="6.5" y1="14.5" x2="9.5" y2="14.5"/><circle cx="16" cy="14" r="1"/><circle cx="18.5" cy="16" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+  <p class="footer-copy">Alís González · Game Designer · Madrid · 2026</p>
 </footer>
 
 <div id="certModal">

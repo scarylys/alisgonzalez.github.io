@@ -4,6 +4,17 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Unstrung — Alís González</title>
+<meta name="description" content="Unstrung: a 2.5D puzzle platformer in Unreal Engine 5. Level design and UI/UX case study by Alís González, covering custom Blueprint systems, puzzle design, and full UI implementation.">
+<link rel="canonical" href="https://alisgonzalez.dev/Unstrung.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Unstrung — Alís González">
+<meta property="og:description" content="2.5D puzzle platformer in Unreal Engine 5. Level design and UI/UX case study.">
+<meta property="og:image" content="https://alisgonzalez.dev/img/unstrung-thumb.png">
+<meta property="og:url" content="https://alisgonzalez.dev/Unstrung.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Unstrung — Alís González">
+<meta name="twitter:description" content="2.5D puzzle platformer in Unreal Engine 5. Level design and UI/UX case study.">
+<meta name="twitter:image" content="https://alisgonzalez.dev/img/unstrung-thumb.png">
 <link rel="icon" type="image/png" href="UnstrungLogo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -135,8 +146,31 @@ aside{position:sticky;top:80px;align-self:start}
 .steam-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--ice);animation:pdot 1.4s infinite;flex-shrink:0}
 .steam-badge-text{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ice)}
 
-footer{text-align:center;padding:36px 24px 40px;border-top:1px solid var(--bord2)}
-footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
+footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid var(--bord2)}
+.footer-top{max-width:1160px;margin:auto;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--bord2)}
+.footer-top span{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.footer-top a{color:var(--muted);transition:color .2s}
+.footer-top a:hover{color:var(--gold)}
+.footer-grid{max-width:1160px;margin:auto;padding:56px 28px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;row-gap:32px}}
+@media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
+.footer-heading{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.footer-bio{font-size:.82rem;color:var(--muted);line-height:1.8;margin-bottom:12px;max-width:320px}
+.footer-links{display:flex;flex-direction:column;gap:11px}
+.footer-links a{font-size:.83rem;color:var(--muted);transition:color .2s;width:fit-content}
+.footer-links a:hover{color:var(--gold)}
+.footer-social a{display:flex;align-items:center;gap:10px}
+.footer-social a svg{flex-shrink:0;color:var(--muted);transition:color .2s}
+.footer-social a:hover svg{color:var(--gold)}
+.footer-bottom{max-width:1160px;margin:auto;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--bord2)}
+.footer-bottom-links{display:flex;flex-wrap:wrap;gap:6px;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.footer-bottom-links a{color:var(--muted);transition:color .2s;padding:2px 4px}
+.footer-bottom-links a:hover{color:var(--gold)}
+.footer-bottom-links .sep{opacity:.4}
+.footer-icons{display:flex;gap:8px}
+.footer-icons a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--bord2);color:var(--muted);transition:color .2s,border-color .2s}
+.footer-icons a:hover{color:var(--gold);border-color:var(--bord)}
+.footer-copy{text-align:center;padding:0 24px 32px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
 
 /* --- PDF viewer block (added) --- */
 .pdf-viewer-wrap{margin-top:16px;border-radius:var(--rad);overflow:hidden;border:1px solid var(--bord2);position:relative}
@@ -173,7 +207,7 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
   </div>
 </nav>
 
-<section class="hero" style="background-image:url('https://i.ibb.co/hRmxsSWr/Portada-Unstrung-Horizontal-2.png')">
+<section class="hero" style="background-image:url('img/unstrung-thumb.png')">
   <div class="hero-shade"></div>
   <div class="hero-content">
     <div class="hero-tag">In Development · Alpha</div>
@@ -218,9 +252,9 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
     <div>
       <div class="sec-title">Screenshots</div>
       <div class="carousel">
-        <div class="slide active" style="background-image:url('https://i.ibb.co/7JJKQbRv/image.png')"></div>
-        <div class="slide" style="background-image:url('https://i.ibb.co/99SVCvk4/Screenshot-2026-06-26-152026.png')"></div>
-        <div class="slide" style="background-image:url('https://i.ibb.co/hRmxsSWr/Portada-Unstrung-Horizontal-2.png')"></div>
+        <div class="slide active" style="background-image:url('img/unstrung-01.png')"></div>
+        <div class="slide" style="background-image:url('img/unstrung-screenshot.png')"></div>
+        <div class="slide" style="background-image:url('img/unstrung-thumb.png')"></div>
         <button class="arrow arrow-left" onclick="prev()">‹</button>
         <button class="arrow arrow-right" onclick="next()">›</button>
         <div class="dots" id="dots"></div>
@@ -245,11 +279,11 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
             <p class="dd-desc">Contributed to puzzle layout and spatial design. Levels are structured to introduce or remix one mechanic at a time, keeping the learning curve readable without hand-holding.</p>
             <div class="img-grid">
               <div class="img-item" onclick="openLightbox(0,0)">
-                <img src="https://i.ibb.co/XZvVJfds/IMG-1794.jpg" alt="Puzzle Layout">
+                <img src="img/unstrung-02.jpg" alt="Puzzle Layout">
                 <div class="img-label">Puzzle — Layout</div>
               </div>
               <div class="img-item" onclick="openLightbox(0,1)">
-                <img src="https://i.ibb.co/V0cchYvH/Whats-App-Image-2026-06-24-at-19-21-58.jpg" alt="In Game">
+                <img src="img/unstrung-03.jpg" alt="In Game">
                 <div class="img-label">Blocking</div>
               </div>
             </div>
@@ -262,15 +296,15 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
             <p class="dd-desc">Implemented Level Sequencer triggers for cutscene moments and developed Blueprint systems, including an elevator with object detection logic that halts movement when obstacles are present.</p>
             <div class="img-grid">
               <div class="img-item" onclick="openLightbox(1,0)">
-                <img src="https://i.ibb.co/8g8RdvfD/image.png" alt="Elevator Blueprint">
+                <img src="img/unstrung-04.png" alt="Elevator Blueprint">
                 <div class="img-label">Elevator — BP</div>
               </div>
               <div class="img-item" onclick="openLightbox(1,1)">
-                <img src="https://i.ibb.co/8g5TBLLF/image.png" alt="Object Detection">
+                <img src="img/unstrung-05.png" alt="Object Detection">
                 <div class="img-label">Object Detection</div>
               </div>
               <div class="img-item" onclick="openLightbox(1,2)">
-                <img src="https://i.ibb.co/cKgmp102/image.png" alt="Level Sequencer">
+                <img src="img/unstrung-06.png" alt="Level Sequencer">
                 <div class="img-label">Level Sequencer</div>
               </div>
             </div>
@@ -283,23 +317,23 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
             <p class="dd-desc">Built the full UI layer, from wireframes and screen flow design through to functional implementation in Blueprints: main menu, settings, and options screens, covering widget architecture, event binding, and navigation logic.</p>
             <div class="img-grid">
               <div class="img-item" onclick="openLightbox(2,0)">
-                <img src="https://i.ibb.co/v4wxPgYz/Whats-App-Image-2026-06-24-at-19-26-58.jpg" alt="Main Menu">
+                <img src="img/unstrung-07.jpg" alt="Main Menu">
                 <div class="img-label">Main Menu</div>
               </div>
               <div class="img-item" onclick="openLightbox(2,1)">
-                <img src="https://i.ibb.co/tT9XDSs1/Whats-App-Image-2026-06-24-at-19-27-41.jpg" alt="Settings Screen">
+                <img src="img/unstrung-08.jpg" alt="Settings Screen">
                 <div class="img-label">Settings</div>
               </div>
               <div class="img-item" onclick="openLightbox(2,2)">
-                <img src="https://i.ibb.co/0p3FF398/Whats-App-Image-2026-06-24-at-19-29-02.jpg" alt="Widget Architecture">
+                <img src="img/unstrung-09.jpg" alt="Widget Architecture">
                 <div class="img-label">Settings WBP</div>
               </div>
               <div class="img-item" onclick="openLightbox(2,3)">
-                <img src="https://i.ibb.co/pv14bqTz/Ilustracio-n-sin-ti-tulo-2.png" alt="Wireframe 1">
+                <img src="img/unstrung-10.png" alt="Wireframe 1">
                 <div class="img-label">Wireframe — Slot Selection</div>
               </div>
               <div class="img-item" onclick="openLightbox(2,4)">
-                <img src="https://i.ibb.co/r9p264Z/Ilustracio-n-sin-ti-tulo-5.png" alt="Wireframe 2">
+                <img src="img/unstrung-11.png" alt="Wireframe 2">
                 <div class="img-label">Wireframe — Controller</div>
               </div>
             </div>
@@ -385,7 +419,79 @@ footer p{font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:
 </div>
 
 <footer>
-  <p>Alís González · Game Designer · Madrid · 2026</p>
+  <div class="footer-top">
+    <span>Madrid, Spain</span>
+    <a href="mailto:alisgsaavedra@gmail.com">alisgsaavedra@gmail.com</a>
+  </div>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-heading">About Me</div>
+      <p class="footer-bio">Game designer specialized in level and systems design, working across Unreal Engine, Unity, and Godot. Background in Animation and Economics, plus a Master's in Game Design at U-tad.</p>
+      <p class="footer-bio">Looking for game design roles and internships across Europe. Open to remote work and relocation.</p>
+    </div>
+    <div>
+      <div class="footer-heading">Projects</div>
+      <div class="footer-links">
+        <a href="Luma.html">Luma</a>
+        <a href="Unstrung.html">Unstrung</a>
+        <a href="Lua.html">Lúa</a>
+        <a href="ToBeNamed.html">To Be Named</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Site</div>
+      <div class="footer-links">
+        <a href="index.html#projects">Projects</a>
+        <a href="index.html#experience">Experience</a>
+        <a href="index.html#about">About</a>
+        <a href="index.html#certificates">Certificates</a>
+        <a href="index.html#contact">Contact</a>
+      </div>
+    </div>
+    <div>
+      <div class="footer-heading">Social Networks</div>
+      <div class="footer-links footer-social">
+        <a href="https://www.linkedin.com/in/alisgs/" target="_blank">
+          <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+        <a href="https://scarylys.itch.io/" target="_blank">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="12" rx="3"/><path d="M2 8l2-5h16l2 5"/><line x1="8" y1="13" x2="8" y2="16"/><line x1="6.5" y1="14.5" x2="9.5" y2="14.5"/><circle cx="16" cy="14" r="1"/><circle cx="18.5" cy="16" r="1"/></svg>
+          Itch.io
+        </a>
+        <a href="mailto:alisgsaavedra@gmail.com">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          Email
+        </a>
+        <a href="https://raw.githubusercontent.com/scarylys/alisgonzalez.github.io/main/GSA_CV.pdf" download="Alis_Gonzalez_CV.pdf">
+          <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          Download CV
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="footer-bottom-links">
+      <a href="index.html">Home</a><span class="sep">·</span>
+      <a href="index.html#projects">Projects</a><span class="sep">·</span>
+      <a href="index.html#experience">Experience</a><span class="sep">·</span>
+      <a href="index.html#about">About</a><span class="sep">·</span>
+      <a href="index.html#certificates">Certificates</a><span class="sep">·</span>
+      <a href="index.html#contact">Contact</a>
+    </div>
+    <div class="footer-icons">
+      <a href="mailto:alisgsaavedra@gmail.com" title="Email" aria-label="Email">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+      </a>
+      <a href="https://www.linkedin.com/in/alisgs/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+        <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="https://scarylys.itch.io/" target="_blank" title="Itch.io" aria-label="Itch.io">
+        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="12" rx="3"/><path d="M2 8l2-5h16l2 5"/><line x1="8" y1="13" x2="8" y2="16"/><line x1="6.5" y1="14.5" x2="9.5" y2="14.5"/><circle cx="16" cy="14" r="1"/><circle cx="18.5" cy="16" r="1"/></svg>
+      </a>
+    </div>
+  </div>
+  <p class="footer-copy">Alís González · Game Designer · Madrid · 2026</p>
 </footer>
 
 <script>

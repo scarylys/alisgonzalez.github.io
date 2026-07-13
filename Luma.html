@@ -4,6 +4,17 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Luma — Alís González</title>
+    <meta name="description" content="Luma: a semi-open world adventure built in Unreal Engine 5. Game design case study by Alís González covering systems, level, and economy design, from GDD to implementation.">
+    <link rel="canonical" href="https://alisgonzalez.dev/Luma.html">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Luma — Alís González">
+    <meta property="og:description" content="Semi-open world adventure built in Unreal Engine 5. Systems, level, and economy design case study.">
+    <meta property="og:image" content="https://alisgonzalez.dev/img/luma-thumb.png">
+    <meta property="og:url" content="https://alisgonzalez.dev/Luma.html">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Luma — Alís González">
+    <meta name="twitter:description" content="Semi-open world adventure built in Unreal Engine 5. Systems, level, and economy design case study.">
+    <meta name="twitter:image" content="https://alisgonzalez.dev/img/luma-thumb.png">
     <link rel="icon" type="image/png" href="LumaLogo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
@@ -719,19 +730,31 @@
                 color: var(--gold)
             }
 
-        footer {
-            text-align: center;
-            padding: 36px 24px 40px;
-            border-top: 1px solid var(--bord2)
-        }
-
-            footer p {
-                font-family: 'JetBrains Mono',monospace;
-                font-size: .62rem;
-                letter-spacing: .25em;
-                text-transform: uppercase;
-                color: rgba(113,122,148,.35)
-            }
+footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid var(--bord2)}
+.footer-top{max-width:1160px;margin:auto;padding:20px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;border-bottom:1px solid var(--bord2)}
+.footer-top span{font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.footer-top a{color:var(--muted);transition:color .2s}
+.footer-top a:hover{color:var(--gold)}
+.footer-grid{max-width:1160px;margin:auto;padding:56px 28px 40px;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px}
+@media(max-width:900px){.footer-grid{grid-template-columns:1fr 1fr;row-gap:32px}}
+@media(max-width:560px){.footer-grid{grid-template-columns:1fr}}
+.footer-heading{font-family:'JetBrains Mono',monospace;font-weight:500;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.footer-bio{font-size:.82rem;color:var(--muted);line-height:1.8;margin-bottom:12px;max-width:320px}
+.footer-links{display:flex;flex-direction:column;gap:11px}
+.footer-links a{font-size:.83rem;color:var(--muted);transition:color .2s;width:fit-content}
+.footer-links a:hover{color:var(--gold)}
+.footer-social a{display:flex;align-items:center;gap:10px}
+.footer-social a svg{flex-shrink:0;color:var(--muted);transition:color .2s}
+.footer-social a:hover svg{color:var(--gold)}
+.footer-bottom{max-width:1160px;margin:auto;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;border-top:1px solid var(--bord2)}
+.footer-bottom-links{display:flex;flex-wrap:wrap;gap:6px;font-family:'JetBrains Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.footer-bottom-links a{color:var(--muted);transition:color .2s;padding:2px 4px}
+.footer-bottom-links a:hover{color:var(--gold)}
+.footer-bottom-links .sep{opacity:.4}
+.footer-icons{display:flex;gap:8px}
+.footer-icons a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--bord2);color:var(--muted);transition:color .2s,border-color .2s}
+.footer-icons a:hover{color:var(--gold);border-color:var(--bord)}
+.footer-copy{text-align:center;padding:0 24px 32px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
 
         .doc-grid {
             display: grid;
@@ -801,6 +824,40 @@
             color: var(--muted)
         }
 
+        .doc-preview-placeholder {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            color: var(--muted);
+            font-family: 'JetBrains Mono',monospace;
+            font-size: .7rem;
+            letter-spacing: .06em;
+            text-align: center;
+            padding: 20px
+        }
+
+        .doc-load-btn {
+            font-family: 'JetBrains Mono',monospace;
+            font-size: .62rem;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: var(--subtle);
+            border: 1px solid var(--bord);
+            color: var(--gold);
+            cursor: pointer;
+            transition: background .2s
+        }
+
+            .doc-load-btn:hover {
+                background: rgba(167,139,250,.2)
+            }
+
         .doc-open-btn {
             flex-shrink: 0;
             font-family: 'JetBrains Mono',monospace;
@@ -838,7 +895,7 @@
         </div>
     </nav>
 
-    <section class="hero" style="background-image:url('https://i.ibb.co/gx7mzZ5/image-5.png')">
+    <section class="hero" style="background-image:url('img/luma-thumb.png')">
         <div class="hero-shade"></div>
         <div class="hero-content">
             <div class="hero-tag">Featured Project · Game Designer and 3D Artist</div>
@@ -864,12 +921,12 @@
             <div>
                 <div class="sec-title">Screenshots</div>
                 <div class="carousel">
-                    <div class="slide active" style="background-image:url('https://i.ibb.co/Q3827bX7/image.png')"></div>
-                    <div class="slide" style="background-image:url('https://i.ibb.co/NhCP9Yr/image.png')"></div>
-                    <div class="slide" style="background-image:url('https://i.ibb.co/N2ZmYKpK/image.png')"></div>
-                    <div class="slide" style="background-image:url('https://i.ibb.co/DFRg8md/image.png')"></div>
-                    <div class="slide" style="background-image:url('https://i.ibb.co/Nd0XrSJ0/image.png')"></div>
-                    <div class="slide" style="background-image:url('https://i.ibb.co/chZ6YqjD/image.png')"></div>
+                    <div class="slide active" style="background-image:url('img/luma-01.png')"></div>
+                    <div class="slide" style="background-image:url('img/luma-02.png')"></div>
+                    <div class="slide" style="background-image:url('img/luma-03.png')"></div>
+                    <div class="slide" style="background-image:url('img/luma-04.png')"></div>
+                    <div class="slide" style="background-image:url('img/luma-05.png')"></div>
+                    <div class="slide" style="background-image:url('img/luma-06.png')"></div>
                     <button class="arrow arrow-left" onclick="prev()">‹</button>
                     <button class="arrow arrow-right" onclick="next()">›</button>
                     <div class="dots" id="dots"></div>
@@ -893,15 +950,15 @@
                             <p class="dd-desc">Designed UI/UX wireframes and screen flows, then implemented the final interfaces, keeping a consistent visual language across menus, HUD, and shop screens.</p>
                             <div class="img-grid">
                                 <div class="img-item" onclick="openGallery(3,0)">
-                                    <img src="https://i.ibb.co/zTBZNcbZ/GDD-Luma-1.png" alt="Interface 1">
+                                    <img src="img/luma-gdd-interface1.png" alt="Interface 1">
                                     <div class="img-label">Screen Flow</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(3,1)">
-                                    <img src="https://i.ibb.co/PsfRds3N/Ilustracio-n-sin-ti-tulo-21.png" alt="Interface 2">
+                                    <img src="img/luma-interface2.png" alt="Interface 2">
                                     <div class="img-label">Diary Wireframe</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(3,2)">
-                                    <img src="https://i.ibb.co/Nd0XrSJ0/image.png" alt="Interface 3">
+                                    <img src="img/luma-05.png" alt="Interface 3">
                                     <div class="img-label">Diary in game</div>
                                 </div>
                             </div>
@@ -914,15 +971,15 @@
                             <p class="dd-desc">Worked on level design layouts, defining environmental composition, object placement, and set dressing to support gameplay flow and navigation. All images are from Level 2.</p>
                             <div class="img-grid">
                                 <div class="img-item" onclick="openGallery(0,0)">
-                                    <img src="https://i.ibb.co/2789Ttqr/IMG-1687-1.jpg" alt="Level 2 Layout">
+                                    <img src="img/luma-level2-layout.jpg" alt="Level 2 Layout">
                                     <div class="img-label">Level 2 — Layout</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(0,1)">
-                                    <img src="https://i.ibb.co/svHJ42Dh/Dise-o-sin-t-tulo-4.png" alt="Level 2 Terrain" style="object-position:35% 50%">
+                                    <img src="img/luma-level2-terrain.png" alt="Level 2 Terrain" style="object-position:35% 50%">
                                     <div class="img-label">Level 2 — Terrain</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(0,2)">
-                                    <img src="https://i.ibb.co/dwrjJYMJ/image-64.png" alt="Level 2 In Game">
+                                    <img src="img/luma-level2-ingame.png" alt="Level 2 In Game">
                                     <div class="img-label">Level 2 — In Game</div>
                                 </div>
                             </div>
@@ -935,15 +992,15 @@
                             <p class="dd-desc">Designed and balanced core gameplay systems, including progression, economy, and in-game shop mechanics, ensuring consistent player flow and engaging reward structures.</p>
                             <div class="img-grid">
                                 <div class="img-item" onclick="openGallery(1,0)">
-                                    <img src="https://i.ibb.co/6RxsyGNk/image.png" alt="Combat System">
+                                    <img src="img/luma-combat.png" alt="Combat System">
                                     <div class="img-label">GDD — Combat System</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(1,1)">
-                                    <img src="https://i.ibb.co/wZ25YHN8/image-67.png" alt="Collectibles Shop" style="object-position:35% 50%">
+                                    <img src="img/luma-shop-collectibles.png" alt="Collectibles Shop" style="object-position:35% 50%">
                                     <div class="img-label">Collectibles & Shop</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(1,2)">
-                                    <img src="https://i.ibb.co/whW8sqnk/image-68.png" alt="In-Game Shop">
+                                    <img src="img/luma-shop-ingame.png" alt="In-Game Shop">
                                     <div class="img-label">In-Game Shop</div>
                                 </div>
                             </div>
@@ -956,15 +1013,15 @@
                             <p class="dd-desc">Textured the entire game in Substance Painter, creating smart materials for characters to keep a consistent visual style.</p>
                             <div class="img-grid">
                                 <div class="img-item" onclick="openGallery(2,0)">
-                                    <img src="https://i.ibb.co/Y7z8BZSK/image-70.png" alt="NPC Texturing">
+                                    <img src="img/luma-npc-texture.png" alt="NPC Texturing">
                                     <div class="img-label">Negotiation NPC</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(2,1)">
-                                    <img src="https://i.ibb.co/8n7BP1F0/image-71.png" alt="Main Character" style="object-position:35% 50%">
+                                    <img src="img/luma-maincharacter.png" alt="Main Character" style="object-position:35% 50%">
                                     <div class="img-label">Main Character</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(2,2)">
-                                    <img src="https://i.ibb.co/r27XcT0n/image-69.png" alt="Soul Collector">
+                                    <img src="img/luma-soulcollector.png" alt="Soul Collector">
                                     <div class="img-label">Soul Collector</div>
                                 </div>
                             </div>
@@ -981,7 +1038,7 @@
 
                     <div class="doc-card">
                         <div class="doc-preview">
-                            <iframe src="GDD_Luma_compressed.pdf"></iframe>
+                            <iframe src="GDD_Luma_compressed.pdf" loading="lazy"></iframe>
                         </div>
                         <div class="doc-info">
                             <div class="doc-title-wrap">
@@ -996,8 +1053,12 @@
                     </div>
 
                     <div class="doc-card">
-                        <div class="doc-preview">
-                            <iframe src="LDD_Luma.pdf"></iframe>
+                        <div class="doc-preview doc-preview-lazy" id="ldd-preview" data-pdf-src="LDD_Luma.pdf">
+                            <div class="doc-preview-placeholder">
+                                <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z" /><polyline points="14,2 14,8 20,8" /></svg>
+                                <span>Level Design Document · ~95 MB</span>
+                                <button type="button" class="doc-load-btn" onclick="loadLddPreview()">Load preview</button>
+                            </div>
                         </div>
                         <div class="doc-info">
                             <div class="doc-title-wrap">
@@ -1087,10 +1148,87 @@
     </div>
 
     <footer>
-        <p>Alís González · Game Designer · Madrid · 2026</p>
+      <div class="footer-top">
+        <span>Madrid, Spain</span>
+        <a href="mailto:alisgsaavedra@gmail.com">alisgsaavedra@gmail.com</a>
+      </div>
+      <div class="footer-grid">
+        <div>
+          <div class="footer-heading">About Me</div>
+          <p class="footer-bio">Game designer specialized in level and systems design, working across Unreal Engine, Unity, and Godot. Background in Animation and Economics, plus a Master's in Game Design at U-tad.</p>
+          <p class="footer-bio">Looking for game design roles and internships across Europe. Open to remote work and relocation.</p>
+        </div>
+        <div>
+          <div class="footer-heading">Projects</div>
+          <div class="footer-links">
+            <a href="Luma.html">Luma</a>
+            <a href="Unstrung.html">Unstrung</a>
+            <a href="Lua.html">Lúa</a>
+            <a href="ToBeNamed.html">To Be Named</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Site</div>
+          <div class="footer-links">
+            <a href="index.html#projects">Projects</a>
+            <a href="index.html#experience">Experience</a>
+            <a href="index.html#about">About</a>
+            <a href="index.html#certificates">Certificates</a>
+            <a href="index.html#contact">Contact</a>
+          </div>
+        </div>
+        <div>
+          <div class="footer-heading">Social Networks</div>
+          <div class="footer-links footer-social">
+            <a href="https://www.linkedin.com/in/alisgs/" target="_blank">
+              <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+              LinkedIn
+            </a>
+            <a href="https://scarylys.itch.io/" target="_blank">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="12" rx="3"/><path d="M2 8l2-5h16l2 5"/><line x1="8" y1="13" x2="8" y2="16"/><line x1="6.5" y1="14.5" x2="9.5" y2="14.5"/><circle cx="16" cy="14" r="1"/><circle cx="18.5" cy="16" r="1"/></svg>
+              Itch.io
+            </a>
+            <a href="mailto:alisgsaavedra@gmail.com">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+              Email
+            </a>
+            <a href="https://raw.githubusercontent.com/scarylys/alisgonzalez.github.io/main/GSA_CV.pdf" download="Alis_Gonzalez_CV.pdf">
+              <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download CV
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div class="footer-bottom-links">
+          <a href="index.html">Home</a><span class="sep">·</span>
+          <a href="index.html#projects">Projects</a><span class="sep">·</span>
+          <a href="index.html#experience">Experience</a><span class="sep">·</span>
+          <a href="index.html#about">About</a><span class="sep">·</span>
+          <a href="index.html#certificates">Certificates</a><span class="sep">·</span>
+          <a href="index.html#contact">Contact</a>
+        </div>
+        <div class="footer-icons">
+          <a href="mailto:alisgsaavedra@gmail.com" title="Email" aria-label="Email">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2,4 12,13 22,4"/></svg>
+          </a>
+          <a href="https://www.linkedin.com/in/alisgs/" target="_blank" title="LinkedIn" aria-label="LinkedIn">
+            <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-4 0v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
+          </a>
+          <a href="https://scarylys.itch.io/" target="_blank" title="Itch.io" aria-label="Itch.io">
+            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="2" y="8" width="20" height="12" rx="3"/><path d="M2 8l2-5h16l2 5"/><line x1="8" y1="13" x2="8" y2="16"/><line x1="6.5" y1="14.5" x2="9.5" y2="14.5"/><circle cx="16" cy="14" r="1"/><circle cx="18.5" cy="16" r="1"/></svg>
+          </a>
+        </div>
+      </div>
+      <p class="footer-copy">Alís González · Game Designer · Madrid · 2026</p>
     </footer>
 
     <script>
+        function loadLddPreview(){
+            const el=document.getElementById('ldd-preview');
+            const src=el.dataset.pdfSrc;
+            el.innerHTML='<iframe src="'+src+'"></iframe>';
+        }
         let idx=0;
         const slides=document.querySelectorAll('.slide');
         const dotsEl=document.getElementById('dots');
@@ -1100,10 +1238,10 @@
         function renderDots(){dotsEl.innerHTML='';slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===idx?' active':'');d.onclick=()=>{idx=i;updateCarousel()};dotsEl.appendChild(d)})}
         renderDots();
         const gallery=[
-        ["https://i.ibb.co/2789Ttqr/IMG-1687-1.jpg","https://i.ibb.co/svHJ42Dh/Dise-o-sin-t-tulo-4.png","https://i.ibb.co/dwrjJYMJ/image-64.png"],
-        ["https://i.ibb.co/6RxsyGNk/image.png","https://i.ibb.co/wZ25YHN8/image-67.png","https://i.ibb.co/whW8sqnk/image-68.png"],
-        ["https://i.ibb.co/Y7z8BZSK/image-70.png","https://i.ibb.co/8n7BP1F0/image-71.png","https://i.ibb.co/r27XcT0n/image-69.png"],
-        ["https://i.ibb.co/zTBZNcbZ/GDD-Luma-1.png","https://i.ibb.co/PsfRds3N/Ilustracio-n-sin-ti-tulo-21.png","https://i.ibb.co/Nd0XrSJ0/image.png"]
+        ["img/luma-level2-layout.jpg","img/luma-level2-terrain.png","img/luma-level2-ingame.png"],
+        ["img/luma-combat.png","img/luma-shop-collectibles.png","img/luma-shop-ingame.png"],
+        ["img/luma-npc-texture.png","img/luma-maincharacter.png","img/luma-soulcollector.png"],
+        ["img/luma-gdd-interface1.png","img/luma-interface2.png","img/luma-05.png"]
         ];
         let lbCat=0,lbImg=0;
         function openGallery(cat,img){lbCat=cat;lbImg=img;document.getElementById('lightbox').classList.add('open');updateLb()}
