@@ -9,15 +9,18 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="To Be Named — Alís González">
 <meta property="og:description" content="Turn-based RPG built in Godot. Combat systems, progression, and narrative-driven design case study.">
-<meta property="og:image" content="https://alisgonzalez.dev/img/tbn-thumb.png">
+<meta property="og:image" content="https://alisgonzalez.dev/img/tbn-thumb.jpg">
 <meta property="og:url" content="https://alisgonzalez.dev/ToBeNamed.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="To Be Named — Alís González">
 <meta name="twitter:description" content="Turn-based RPG built in Godot. Combat systems, progression, and narrative-driven design case study.">
-<meta name="twitter:image" content="https://alisgonzalez.dev/img/tbn-thumb.png">
+<meta name="twitter:image" content="https://alisgonzalez.dev/img/tbn-thumb.jpg">
 <link rel="icon" type="image/png" href="TBNLogo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --ink:#07090f;--ink2:#0f1623;--ink3:#1a2540;
@@ -168,7 +171,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
   </div>
 </nav>
 
-<section class="hero" style="background-image:url('img/tbn-thumb.png')">
+<section class="hero" style="background-image:url('img/tbn-thumb.jpg')">
   <div class="hero-shade"></div>
   <div class="hero-content">
     <div class="hero-tag">Team Project · Godot</div>
@@ -191,10 +194,10 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
     <div>
       <div class="sec-title">Screenshots</div>
       <div class="carousel">
-        <div class="slide active" style="background-image:url('img/tbn-01.png')"></div>
-        <div class="slide" style="background-image:url('img/tbn-02.png')"></div>
-        <div class="slide" style="background-image:url('img/tbn-03.png')"></div>
-        <div class="slide" style="background-image:url('img/tbn-04.png')"></div>
+        <div class="slide active" style="background-image:url('img/tbn-01.jpg')"></div>
+        <div class="slide" style="background-image:url('img/tbn-02.jpg')"></div>
+        <div class="slide" style="background-image:url('img/tbn-03.jpg')"></div>
+        <div class="slide" style="background-image:url('img/tbn-04.jpg')"></div>
         <button class="arrow arrow-left" onclick="prev()">‹</button>
         <button class="arrow arrow-right" onclick="next()">›</button>
         <div class="dots" id="dots"></div>
@@ -217,15 +220,15 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
             <p class="dd-desc">Designed and implemented the in-game interfaces for combat, inventory, and progression screens. Focused on clarity and usability so the player always knows their options at a glance.</p>
             <div class="img-grid">
               <div class="img-item" onclick="openGallery(0,0)">
-                <img src="img/tbn-05.png" alt="Main Menu">
+                <img src="img/tbn-05.jpg" alt="Main Menu">
                 <div class="img-label">Main Menu</div>
               </div>
               <div class="img-item" onclick="openGallery(0,1)">
-                <img src="img/tbn-06.png" alt="Options Menu">
+                <img src="img/tbn-06.jpg" alt="Options Menu">
                 <div class="img-label">Options Menu</div>
               </div>
               <div class="img-item" onclick="openGallery(0,2)">
-                <img src="img/tbn-07.png" alt="Audio Menu">
+                <img src="img/tbn-07.jpg" alt="Audio Menu">
                 <div class="img-label">Audio Menu</div>
               </div>
             </div>
@@ -245,7 +248,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
             <p class="dd-desc">Collaborated on the character level-up system — how the player improves stats and unlocks abilities as they gain experience, balancing power growth against increasing enemy difficulty.</p>
              <div class="img-grid">
               <div class="img-item" onclick="openGallery(1,0)">
-                <img src="img/tbn-03.png" alt="Tower layout">
+                <img src="img/tbn-03.jpg" alt="Tower layout">
                 <div class="img-label">Stat Screen</div>
               </div>
             </div>
@@ -407,8 +410,8 @@ function renderDots(){dotsEl.innerHTML='';slides.forEach((_,i)=>{const d=documen
 renderDots();
 
 const gallery=[
-  ["img/tbn-05.png","img/tbn-06.png","img/tbn-07.png"],
-  ["img/tbn-03.png"]
+  ["img/tbn-05.jpg","img/tbn-06.jpg","img/tbn-07.jpg"],
+  ["img/tbn-03.jpg"]
 ];
 let lbCat=0,lbImg=0;
 function openGallery(cat,img){lbCat=cat;lbImg=img;document.getElementById('lightbox').classList.add('open');updateLb()}

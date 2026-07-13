@@ -9,12 +9,12 @@
 <meta property="og:type" content="website">
 <meta property="og:title" content="Game Design Portfolio - Alís González">
 <meta property="og:description" content="Portfolio of Alís González, game designer based in Madrid specializing in level design and systems design. Projects built in Unreal Engine 5, Unity, and Godot, including Luma and Unstrung.">
-<meta property="og:image" content="https://alisgonzalez.dev/img/hero-bg.png">
+<meta property="og:image" content="https://alisgonzalez.dev/img/hero-bg.jpg">
 <meta property="og:url" content="https://alisgonzalez.dev/">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Game Design Portfolio - Alís González">
 <meta name="twitter:description" content="Portfolio of Alís González, game designer based in Madrid specializing in level design and systems design. Projects built in Unreal Engine 5, Unity, and Godot, including Luma and Unstrung.">
-<meta name="twitter:image" content="https://alisgonzalez.dev/img/hero-bg.png">
+<meta name="twitter:image" content="https://alisgonzalez.dev/img/hero-bg.jpg">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,7 +38,10 @@
 </script>
 <link rel="icon" type="image/png" href="agLogo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --ink:#07090f;--ink2:#0f1623;--ink3:#1a2540;
@@ -85,7 +88,7 @@ nav{position:fixed;top:0;width:100%;background:rgba(7,9,15,.88);border-bottom:1p
 @media(max-width:860px){.nav-links{display:none}.nav-right .nav-cv{display:none}.nav-toggle{display:flex}}
 
 #home{position:relative;min-height:100vh;display:flex;align-items:center;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background-image:url('img/hero-bg.png');background-size:cover;background-position:center;filter:brightness(.18) saturate(1.1)}
+.hero-bg{position:absolute;inset:0;background-image:url('img/hero-bg.jpg');background-size:cover;background-position:center;filter:brightness(.18) saturate(1.1)}
 .hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 80% 70% at 50% 50%,transparent 0%,rgba(7,9,15,.7) 100%),linear-gradient(to bottom,rgba(7,9,15,.5) 0%,transparent 30%,rgba(7,9,15,.98) 100%)}
 .hero-inner{position:relative;max-width:1160px;margin:auto;width:100%;padding:0 28px;display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:100vh;text-align:center}
 .hero-tag{font-family:'JetBrains Mono',monospace;font-size:.67rem;letter-spacing:.35em;text-transform:uppercase;color:var(--gold);margin-bottom:24px;display:flex;align-items:center;justify-content:center;gap:12px}
@@ -441,7 +444,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
     </div>
 
     <a href="Luma.html" class="proj-featured reveal">
-      <div class="pf-thumb" style="background-image:url('img/luma-thumb.png')">
+      <div class="pf-thumb" style="background-image:url('img/luma-thumb.jpg')">
           <div class="pf-thumb-shade"></div>
           <div style="position:absolute;top:12px;right:12px;font-family:'JetBrains Mono',monospace;font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:rgba(79,195,247,.12);border:1px solid rgba(79,195,247,.3);color:#4fc3f7;display:flex;align-items:center;gap:5px"><span style="width:5px;height:5px;border-radius:50%;background:#4fc3f7;animation:pdot 1.4s infinite;flex-shrink:0;display:inline-block"></span>Coming soon on Steam</div>
         </div>
@@ -465,7 +468,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
     <div class="proj-grid" style="margin-top:20px">
 
       <a href="Unstrung.html" class="proj-card wip reveal" style="transition-delay:.1s">
-        <div class="pc-thumb" style="background-image:url('img/unstrung-thumb.png')">
+        <div class="pc-thumb" style="background-image:url('img/unstrung-thumb.jpg')">
           <div class="pc-thumb-shade"></div>
           <div class="pc-badge-wip"><span class="wip-dot"></span>In Development</div>
         </div>
@@ -486,7 +489,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
       </a>
 
       <a href="Lua.html" class="proj-card done reveal" style="transition-delay:.2s">
-        <div class="pc-thumb" style="background-image:url('img/lua-thumb.png')">
+        <div class="pc-thumb" style="background-image:url('img/lua-thumb.jpg')">
           <div class="pc-thumb-shade"></div>
         </div>
         <div class="pc-body">
@@ -503,7 +506,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
       </a>
 
       <a href="ToBeNamed.html" class="proj-card wip reveal" style="transition-delay:.3s">
-        <div class="pc-thumb" style="background-image:url('img/tbn-thumb.png')">
+        <div class="pc-thumb" style="background-image:url('img/tbn-thumb.jpg')">
           <div class="pc-thumb-shade"></div>
         </div>
         <div class="pc-body">
@@ -646,7 +649,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
       <div class="sec-rule"></div>
     </div>
     <div class="certs-grid">
-      <div class="cert-card reveal" data-img="img/cert-trinity.png" data-caption="Trinity ISE III (C1) · 2026">
+      <div class="cert-card reveal" data-img="img/cert-trinity.jpg" data-caption="Trinity ISE III (C1) · 2026">
         <div class="cert-icon lang">
           <img src="img/icon-trinity.png" alt="Trinity" style="width:100%;height:100%;object-fit:contain;">
         </div>

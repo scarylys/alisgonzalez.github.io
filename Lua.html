@@ -9,15 +9,18 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Lúa — Alís González">
 <meta property="og:description" content="2D platformer built in Unreal Engine 5. A level design case study on flow, pacing, and atmosphere.">
-<meta property="og:image" content="https://alisgonzalez.dev/img/lua-thumb.png">
+<meta property="og:image" content="https://alisgonzalez.dev/img/lua-thumb.jpg">
 <meta property="og:url" content="https://alisgonzalez.dev/Lua.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Lúa — Alís González">
 <meta name="twitter:description" content="2D platformer built in Unreal Engine 5. A level design case study on flow, pacing, and atmosphere.">
-<meta name="twitter:image" content="https://alisgonzalez.dev/img/lua-thumb.png">
+<meta name="twitter:image" content="https://alisgonzalez.dev/img/lua-thumb.jpg">
 <link rel="icon" type="image/png" href="LuaLogo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --ink:#07090f;--ink2:#0f1623;--ink3:#1a2540;
@@ -168,7 +171,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
   </div>
 </nav>
 
-<section class="hero" style="background-image:url('img/lua-01.png')">
+<section class="hero" style="background-image:url('img/lua-01.jpg')">
   <div class="hero-shade"></div>
   <div class="hero-content">
     <div class="hero-tag">Global Game Jam 2025 · Team Project</div>
@@ -189,10 +192,10 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
     <div>
       <div class="sec-title">Screenshots</div>
       <div class="carousel">
-        <div class="slide active" style="background-image:url('img/lua-02.png')"></div>
-        <div class="slide" style="background-image:url('img/lua-01.png')"></div>
-        <div class="slide" style="background-image:url('img/lua-03.png')"></div>
-        <div class="slide" style="background-image:url('img/lua-04.png')"></div>
+        <div class="slide active" style="background-image:url('img/lua-02.jpg')"></div>
+        <div class="slide" style="background-image:url('img/lua-01.jpg')"></div>
+        <div class="slide" style="background-image:url('img/lua-03.jpg')"></div>
+        <div class="slide" style="background-image:url('img/lua-04.jpg')"></div>
         <button class="arrow arrow-left" onclick="prev()">‹</button>
         <button class="arrow arrow-right" onclick="next()">›</button>
         <div class="dots" id="dots"></div>
@@ -219,11 +222,11 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
                 <div class="img-label">Layout sketch</div>
               </div>
               <div class="img-item" onclick="openGallery(0,1)">
-                <img src="img/lua-02.png" alt="In-game">
+                <img src="img/lua-02.jpg" alt="In-game">
                 <div class="img-label">In game</div>
               </div>
               <div class="img-item" onclick="openGallery(0,2)">
-                <img src="img/lua-04.png" alt="Platforming section">
+                <img src="img/lua-04.jpg" alt="Platforming section">
                 <div class="img-label">Platforming section</div>
               </div>
             </div>
@@ -383,7 +386,7 @@ function renderDots(){dotsEl.innerHTML='';slides.forEach((_,i)=>{const d=documen
 renderDots();
 
 const gallery=[
-  ["img/lua-05.jpg","img/lua-02.png","img/lua-04.png"]
+  ["img/lua-05.jpg","img/lua-02.jpg","img/lua-04.jpg"]
 ];
 let lbCat=0,lbImg=0;
 function openGallery(cat,img){lbCat=cat;lbImg=img;document.getElementById('lightbox').classList.add('open');updateLb()}

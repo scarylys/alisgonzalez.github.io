@@ -9,15 +9,18 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Unstrung — Alís González">
 <meta property="og:description" content="2.5D puzzle platformer in Unreal Engine 5. Level design and UI/UX case study.">
-<meta property="og:image" content="https://alisgonzalez.dev/img/unstrung-thumb.png">
+<meta property="og:image" content="https://alisgonzalez.dev/img/unstrung-thumb.jpg">
 <meta property="og:url" content="https://alisgonzalez.dev/Unstrung.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Unstrung — Alís González">
 <meta name="twitter:description" content="2.5D puzzle platformer in Unreal Engine 5. Level design and UI/UX case study.">
-<meta name="twitter:image" content="https://alisgonzalez.dev/img/unstrung-thumb.png">
+<meta name="twitter:image" content="https://alisgonzalez.dev/img/unstrung-thumb.jpg">
 <link rel="icon" type="image/png" href="UnstrungLogo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+<noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
 <style>
 :root{
   --ink:#07090f;--ink2:#0f1623;--ink3:#1a2540;
@@ -207,7 +210,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
   </div>
 </nav>
 
-<section class="hero" style="background-image:url('img/unstrung-thumb.png')">
+<section class="hero" style="background-image:url('img/unstrung-thumb.jpg')">
   <div class="hero-shade"></div>
   <div class="hero-content">
     <div class="hero-tag">In Development · Alpha</div>
@@ -252,9 +255,9 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
     <div>
       <div class="sec-title">Screenshots</div>
       <div class="carousel">
-        <div class="slide active" style="background-image:url('img/unstrung-01.png')"></div>
-        <div class="slide" style="background-image:url('img/unstrung-screenshot.png')"></div>
-        <div class="slide" style="background-image:url('img/unstrung-thumb.png')"></div>
+        <div class="slide active" style="background-image:url('img/unstrung-01.jpg')"></div>
+        <div class="slide" style="background-image:url('img/unstrung-screenshot.jpg')"></div>
+        <div class="slide" style="background-image:url('img/unstrung-thumb.jpg')"></div>
         <button class="arrow arrow-left" onclick="prev()">‹</button>
         <button class="arrow arrow-right" onclick="next()">›</button>
         <div class="dots" id="dots"></div>
@@ -296,15 +299,15 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
             <p class="dd-desc">Implemented Level Sequencer triggers for cutscene moments and developed Blueprint systems, including an elevator with object detection logic that halts movement when obstacles are present.</p>
             <div class="img-grid">
               <div class="img-item" onclick="openLightbox(1,0)">
-                <img src="img/unstrung-04.png" alt="Elevator Blueprint">
+                <img src="img/unstrung-04.jpg" alt="Elevator Blueprint">
                 <div class="img-label">Elevator — BP</div>
               </div>
               <div class="img-item" onclick="openLightbox(1,1)">
-                <img src="img/unstrung-05.png" alt="Object Detection">
+                <img src="img/unstrung-05.jpg" alt="Object Detection">
                 <div class="img-label">Object Detection</div>
               </div>
               <div class="img-item" onclick="openLightbox(1,2)">
-                <img src="img/unstrung-06.png" alt="Level Sequencer">
+                <img src="img/unstrung-06.jpg" alt="Level Sequencer">
                 <div class="img-label">Level Sequencer</div>
               </div>
             </div>
@@ -329,11 +332,11 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
                 <div class="img-label">Settings WBP</div>
               </div>
               <div class="img-item" onclick="openLightbox(2,3)">
-                <img src="img/unstrung-10.png" alt="Wireframe 1">
+                <img src="img/unstrung-10.jpg" alt="Wireframe 1">
                 <div class="img-label">Wireframe — Slot Selection</div>
               </div>
               <div class="img-item" onclick="openLightbox(2,4)">
-                <img src="img/unstrung-11.png" alt="Wireframe 2">
+                <img src="img/unstrung-11.jpg" alt="Wireframe 2">
                 <div class="img-label">Wireframe — Controller</div>
               </div>
             </div>

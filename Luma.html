@@ -9,15 +9,18 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Luma — Alís González">
     <meta property="og:description" content="Semi-open world adventure built in Unreal Engine 5. Systems, level, and economy design case study.">
-    <meta property="og:image" content="https://alisgonzalez.dev/img/luma-thumb.png">
+    <meta property="og:image" content="https://alisgonzalez.dev/img/luma-thumb.jpg">
     <meta property="og:url" content="https://alisgonzalez.dev/Luma.html">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Luma — Alís González">
     <meta name="twitter:description" content="Semi-open world adventure built in Unreal Engine 5. Systems, level, and economy design case study.">
-    <meta name="twitter:image" content="https://alisgonzalez.dev/img/luma-thumb.png">
+    <meta name="twitter:image" content="https://alisgonzalez.dev/img/luma-thumb.jpg">
     <link rel="icon" type="image/png" href="LumaLogo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap">
+    <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=JetBrains+Mono:wght@300;400;500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"></noscript>
     <style>
         :root {
             --ink: #07090f;
@@ -895,7 +898,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
         </div>
     </nav>
 
-    <section class="hero" style="background-image:url('img/luma-thumb.png')">
+    <section class="hero" style="background-image:url('img/luma-thumb.jpg')">
         <div class="hero-shade"></div>
         <div class="hero-content">
             <div class="hero-tag">Featured Project · Game Designer and 3D Artist</div>
@@ -921,12 +924,12 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
             <div>
                 <div class="sec-title">Screenshots</div>
                 <div class="carousel">
-                    <div class="slide active" style="background-image:url('img/luma-01.png')"></div>
-                    <div class="slide" style="background-image:url('img/luma-02.png')"></div>
-                    <div class="slide" style="background-image:url('img/luma-03.png')"></div>
-                    <div class="slide" style="background-image:url('img/luma-04.png')"></div>
-                    <div class="slide" style="background-image:url('img/luma-05.png')"></div>
-                    <div class="slide" style="background-image:url('img/luma-06.png')"></div>
+                    <div class="slide active" style="background-image:url('img/luma-01.jpg')"></div>
+                    <div class="slide" style="background-image:url('img/luma-02.jpg')"></div>
+                    <div class="slide" style="background-image:url('img/luma-03.jpg')"></div>
+                    <div class="slide" style="background-image:url('img/luma-04.jpg')"></div>
+                    <div class="slide" style="background-image:url('img/luma-05.jpg')"></div>
+                    <div class="slide" style="background-image:url('img/luma-06.jpg')"></div>
                     <button class="arrow arrow-left" onclick="prev()">‹</button>
                     <button class="arrow arrow-right" onclick="next()">›</button>
                     <div class="dots" id="dots"></div>
@@ -950,15 +953,15 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
                             <p class="dd-desc">Designed UI/UX wireframes and screen flows, then implemented the final interfaces, keeping a consistent visual language across menus, HUD, and shop screens.</p>
                             <div class="img-grid">
                                 <div class="img-item" onclick="openGallery(3,0)">
-                                    <img src="img/luma-gdd-interface1.png" alt="Interface 1">
+                                    <img src="img/luma-gdd-interface1.jpg" alt="Interface 1">
                                     <div class="img-label">Screen Flow</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(3,1)">
-                                    <img src="img/luma-interface2.png" alt="Interface 2">
+                                    <img src="img/luma-interface2.jpg" alt="Interface 2">
                                     <div class="img-label">Diary Wireframe</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(3,2)">
-                                    <img src="img/luma-05.png" alt="Interface 3">
+                                    <img src="img/luma-05.jpg" alt="Interface 3">
                                     <div class="img-label">Diary in game</div>
                                 </div>
                             </div>
@@ -975,11 +978,11 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
                                     <div class="img-label">Level 2 — Layout</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(0,1)">
-                                    <img src="img/luma-level2-terrain.png" alt="Level 2 Terrain" style="object-position:35% 50%">
+                                    <img src="img/luma-level2-terrain.jpg" alt="Level 2 Terrain" style="object-position:35% 50%">
                                     <div class="img-label">Level 2 — Terrain</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(0,2)">
-                                    <img src="img/luma-level2-ingame.png" alt="Level 2 In Game">
+                                    <img src="img/luma-level2-ingame.jpg" alt="Level 2 In Game">
                                     <div class="img-label">Level 2 — In Game</div>
                                 </div>
                             </div>
@@ -992,15 +995,15 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
                             <p class="dd-desc">Designed and balanced core gameplay systems, including progression, economy, and in-game shop mechanics, ensuring consistent player flow and engaging reward structures.</p>
                             <div class="img-grid">
                                 <div class="img-item" onclick="openGallery(1,0)">
-                                    <img src="img/luma-combat.png" alt="Combat System">
+                                    <img src="img/luma-combat.jpg" alt="Combat System">
                                     <div class="img-label">GDD — Combat System</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(1,1)">
-                                    <img src="img/luma-shop-collectibles.png" alt="Collectibles Shop" style="object-position:35% 50%">
+                                    <img src="img/luma-shop-collectibles.jpg" alt="Collectibles Shop" style="object-position:35% 50%">
                                     <div class="img-label">Collectibles & Shop</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(1,2)">
-                                    <img src="img/luma-shop-ingame.png" alt="In-Game Shop">
+                                    <img src="img/luma-shop-ingame.jpg" alt="In-Game Shop">
                                     <div class="img-label">In-Game Shop</div>
                                 </div>
                             </div>
@@ -1013,15 +1016,15 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
                             <p class="dd-desc">Textured the entire game in Substance Painter, creating smart materials for characters to keep a consistent visual style.</p>
                             <div class="img-grid">
                                 <div class="img-item" onclick="openGallery(2,0)">
-                                    <img src="img/luma-npc-texture.png" alt="NPC Texturing">
+                                    <img src="img/luma-npc-texture.jpg" alt="NPC Texturing">
                                     <div class="img-label">Negotiation NPC</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(2,1)">
-                                    <img src="img/luma-maincharacter.png" alt="Main Character" style="object-position:35% 50%">
+                                    <img src="img/luma-maincharacter.jpg" alt="Main Character" style="object-position:35% 50%">
                                     <div class="img-label">Main Character</div>
                                 </div>
                                 <div class="img-item" onclick="openGallery(2,2)">
-                                    <img src="img/luma-soulcollector.png" alt="Soul Collector">
+                                    <img src="img/luma-soulcollector.jpg" alt="Soul Collector">
                                     <div class="img-label">Soul Collector</div>
                                 </div>
                             </div>
@@ -1238,10 +1241,10 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
         function renderDots(){dotsEl.innerHTML='';slides.forEach((_,i)=>{const d=document.createElement('div');d.className='dot'+(i===idx?' active':'');d.onclick=()=>{idx=i;updateCarousel()};dotsEl.appendChild(d)})}
         renderDots();
         const gallery=[
-        ["img/luma-level2-layout.jpg","img/luma-level2-terrain.png","img/luma-level2-ingame.png"],
-        ["img/luma-combat.png","img/luma-shop-collectibles.png","img/luma-shop-ingame.png"],
-        ["img/luma-npc-texture.png","img/luma-maincharacter.png","img/luma-soulcollector.png"],
-        ["img/luma-gdd-interface1.png","img/luma-interface2.png","img/luma-05.png"]
+        ["img/luma-level2-layout.jpg","img/luma-level2-terrain.jpg","img/luma-level2-ingame.jpg"],
+        ["img/luma-combat.jpg","img/luma-shop-collectibles.jpg","img/luma-shop-ingame.jpg"],
+        ["img/luma-npc-texture.jpg","img/luma-maincharacter.jpg","img/luma-soulcollector.jpg"],
+        ["img/luma-gdd-interface1.jpg","img/luma-interface2.jpg","img/luma-05.jpg"]
         ];
         let lbCat=0,lbImg=0;
         function openGallery(cat,img){lbCat=cat;lbImg=img;document.getElementById('lightbox').classList.add('open');updateLb()}
