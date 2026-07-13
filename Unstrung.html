@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8"/>
+<script>(function(){try{if(localStorage.getItem('site-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
 <title>Unstrung — Alís González</title>
 <meta name="description" content="Unstrung: a 2.5D puzzle platformer in Unreal Engine 5. Level design and UI/UX case study by Alís González, covering custom Blueprint systems, puzzle design, and full UI implementation.">
@@ -25,9 +26,15 @@
 :root{
   --ink:#07090f;--ink2:#0f1623;--ink3:#1a2540;
   --gold:#a78bfa;--gold2:#c4b5fd;--ice:#4fc3f7;
-  --text:#d4cfc8;--muted:#717a94;
+  --text:#d4cfc8;--muted:#7b84a0;--heading:#fff;
   --subtle:rgba(167,139,250,.12);--bord:rgba(167,139,250,.18);--bord2:rgba(255,255,255,.07);
   --rad:6px;
+}
+:root[data-theme="light"]{
+  --ink:#f7f5f2;--ink2:#ffffff;--ink3:#eef0f5;
+  --gold:#7c3aed;--gold2:#6d28d9;--ice:#0e7490;
+  --text:#2a2a2a;--muted:#5b6472;--heading:#15151a;
+  --subtle:rgba(124,58,237,.08);--bord:rgba(124,58,237,.22);--bord2:rgba(0,0,0,.09);
 }
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -42,7 +49,14 @@ a{text-decoration:none;color:inherit}
 @keyframes pdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
 
 nav{position:fixed;top:33px;width:100%;background:rgba(7,9,15,.88);border-bottom:1px solid var(--bord2);backdrop-filter:blur(16px);z-index:200}
+:root[data-theme="light"] nav{background:rgba(247,245,242,.88)}
 .nav-inner{max-width:1160px;margin:auto;display:flex;align-items:center;justify-content:space-between;padding:13px 28px}
+.theme-toggle{display:flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:var(--rad);border:1px solid var(--bord2);color:var(--muted);background:none;cursor:pointer;font:inherit;transition:color .2s,border-color .2s}
+.theme-toggle:hover{color:var(--gold);border-color:var(--bord)}
+.theme-toggle svg{display:none}
+.theme-toggle .icon-sun{display:block}
+:root[data-theme="light"] .theme-toggle .icon-sun{display:none}
+:root[data-theme="light"] .theme-toggle .icon-moon{display:block}
 .nav-back{font-family:'JetBrains Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:7px 18px;border:1px solid var(--bord2);color:var(--muted);border-radius:var(--rad);transition:color .2s,border-color .2s}
 .nav-back:hover{color:var(--gold);border-color:var(--bord)}
 .nav-links{display:flex;gap:28px;list-style:none}
@@ -70,7 +84,7 @@ nav{position:fixed;top:33px;width:100%;background:rgba(7,9,15,.88);border-bottom
 @media(max-width:900px){.content-wrap{grid-template-columns:1fr}}
 .main-col{display:flex;flex-direction:column;gap:56px}
 
-.sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.5rem;color:#fff;letter-spacing:-.02em;margin-bottom:16px;display:flex;align-items:center;gap:14px}
+.sec-title{font-family:'Syne',sans-serif;font-weight:700;font-size:1.5rem;color:var(--heading);letter-spacing:-.02em;margin-bottom:16px;display:flex;align-items:center;gap:14px}
 .sec-title::after{content:'';flex:1;height:1px;background:var(--bord2)}
 
 .wip-progress{background:var(--ink2);border:1px solid var(--bord2);border-radius:10px;padding:20px 24px;margin-bottom:0}
@@ -173,7 +187,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
 .footer-icons{display:flex;gap:8px}
 .footer-icons a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--bord2);color:var(--muted);transition:color .2s,border-color .2s}
 .footer-icons a:hover{color:var(--gold);border-color:var(--bord)}
-.footer-copy{text-align:center;padding:0 24px 32px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
+.footer-copy{text-align:center;padding:0 24px 32px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
 
 /* --- PDF viewer block (added) --- */
 .pdf-viewer-wrap{margin-top:16px;border-radius:var(--rad);overflow:hidden;border:1px solid var(--bord2);position:relative}
@@ -206,6 +220,10 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
       <li><a href="#whatidid">My Work</a></li>
       <li><a href="#learned">My Skills</a></li>
     </ul>
+    <button class="theme-toggle" id="themeToggle" type="button" title="Toggle light/dark theme" aria-label="Toggle light/dark theme">
+      <svg class="icon-sun" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+      <svg class="icon-moon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
     <a href="index.html#contact" class="nav-hire">Hire Me</a>
   </div>
 </nav>
@@ -576,6 +594,13 @@ function closePdfLightbox() {
 }
 document.getElementById('pdfLightbox').addEventListener('click', e => {
   if (e.target === document.getElementById('pdfLightbox')) closePdfLightbox();
+});
+
+document.getElementById('themeToggle').addEventListener('click',()=>{
+  const root=document.documentElement;
+  const isLight=root.getAttribute('data-theme')==='light';
+  if(isLight){root.removeAttribute('data-theme');localStorage.setItem('site-theme','dark');}
+  else{root.setAttribute('data-theme','light');localStorage.setItem('site-theme','light');}
 });
 </script>
 </body>

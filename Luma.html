@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
+    <script>(function(){try{if(localStorage.getItem('site-theme')==='light')document.documentElement.setAttribute('data-theme','light');}catch(e){}})();</script>
     <meta name="viewport" content="width=device-width,initial-scale=1.0" />
     <title>Luma — Alís González</title>
     <meta name="description" content="Luma: a semi-open world adventure built in Unreal Engine 5. Game design case study by Alís González covering systems, level, and economy design, from GDD to implementation.">
@@ -30,11 +31,27 @@
             --gold2: #c4b5fd;
             --ice: #4fc3f7;
             --text: #d4cfc8;
-            --muted: #717a94;
+            --muted: #7b84a0;
+            --heading: #fff;
             --subtle: rgba(167,139,250,.12);
             --bord: rgba(167,139,250,.18);
             --bord2: rgba(255,255,255,.07);
             --rad: 6px;
+        }
+
+        :root[data-theme="light"] {
+            --ink: #f7f5f2;
+            --ink2: #ffffff;
+            --ink3: #eef0f5;
+            --gold: #7c3aed;
+            --gold2: #6d28d9;
+            --ice: #0e7490;
+            --text: #2a2a2a;
+            --muted: #5b6472;
+            --heading: #15151a;
+            --subtle: rgba(124,58,237,.08);
+            --bord: rgba(124,58,237,.22);
+            --bord2: rgba(0,0,0,.09);
         }
 
         *, *::before, *::after {
@@ -85,6 +102,46 @@
             border-bottom: 1px solid var(--bord2);
             backdrop-filter: blur(16px);
             z-index: 200
+        }
+
+        :root[data-theme="light"] nav {
+            background: rgba(247,245,242,.88)
+        }
+
+        .theme-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: var(--rad);
+            border: 1px solid var(--bord2);
+            color: var(--muted);
+            background: none;
+            cursor: pointer;
+            font: inherit;
+            transition: color .2s,border-color .2s
+        }
+
+            .theme-toggle:hover {
+                color: var(--gold);
+                border-color: var(--bord)
+            }
+
+            .theme-toggle svg {
+                display: none
+            }
+
+            .theme-toggle .icon-sun {
+                display: block
+            }
+
+        :root[data-theme="light"] .theme-toggle .icon-sun {
+            display: none
+        }
+
+        :root[data-theme="light"] .theme-toggle .icon-moon {
+            display: block
         }
 
         .nav-inner {
@@ -278,7 +335,7 @@
             font-family: 'Syne',sans-serif;
             font-weight: 700;
             font-size: 1.5rem;
-            color: #fff;
+            color: var(--heading);
             letter-spacing: -.02em;
             margin-bottom: 16px;
             display: flex;
@@ -757,7 +814,7 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
 .footer-icons{display:flex;gap:8px}
 .footer-icons a{display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:50%;border:1px solid var(--bord2);color:var(--muted);transition:color .2s,border-color .2s}
 .footer-icons a:hover{color:var(--gold);border-color:var(--bord)}
-.footer-copy{text-align:center;padding:0 24px 32px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:rgba(113,122,148,.35)}
+.footer-copy{text-align:center;padding:0 24px 32px;font-family:'JetBrains Mono',monospace;font-size:.62rem;letter-spacing:.25em;text-transform:uppercase;color:var(--muted)}
 
         .doc-grid {
             display: grid;
@@ -894,6 +951,10 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
                 <li><a href="#documentation">Documentation</a></li>
                 <li><a href="#learned">My Skills</a></li>
             </ul>
+            <button class="theme-toggle" id="themeToggle" type="button" title="Toggle light/dark theme" aria-label="Toggle light/dark theme">
+                <svg class="icon-sun" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/></svg>
+                <svg class="icon-moon" width="15" height="15" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+            </button>
             <a href="index.html#contact" class="nav-hire">Hire Me</a>
         </div>
     </nav>
@@ -1254,6 +1315,13 @@ footer{position:relative;z-index:1;background:var(--ink2);border-top:1px solid v
         function closeGallery(){document.getElementById('lightbox').classList.remove('open')}
         document.getElementById('lightbox').addEventListener('click',e=>{if(e.target===document.getElementById('lightbox'))closeGallery()});
         document.addEventListener('keydown',e=>{if(e.key==='Escape')closeGallery();if(e.key==='ArrowRight')nextImg();if(e.key==='ArrowLeft')prevImg()});
+
+        document.getElementById('themeToggle').addEventListener('click',()=>{
+            const root=document.documentElement;
+            const isLight=root.getAttribute('data-theme')==='light';
+            if(isLight){root.removeAttribute('data-theme');localStorage.setItem('site-theme','dark');}
+            else{root.setAttribute('data-theme','light');localStorage.setItem('site-theme','light');}
+        });
     </script>
 </body>
 </html>
